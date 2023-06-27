@@ -6,6 +6,7 @@ import Ecard from '@/lib/Ecard'
 import Ecard2 from '@/lib/Ecard2'
 import Fcard from '@/lib/Fcard'
 import Gfile from '@/lib/Gfile'
+import Chatbox from '@/lib/Chatbox'
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <Bcard/>
       <Fcard/>
       <Gfile/>
+      <Chatbox/>
     </main>
   )
 }

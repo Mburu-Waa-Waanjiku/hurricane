@@ -1,8 +1,9 @@
 import './globals.css'
 import { Oswald } from 'next/font/google'
 import Image from 'next/image'
-import { BsFillEnvelopeFill } from 'react-icons/bs'
 import Menu from '@/lib/Menu'
+import Chat from '@/lib/Chat'
+import { StateContext } from '@/Context/Statecontext'
 
 const inter = Oswald({ subsets: ['latin'] })
 
@@ -12,28 +13,29 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
-
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="h-30 bg-white flex items-end text-2xl gap-1 p-1 xs:p-2 sm:p-3">
-          <Image className='cursor-pointer' width={50} height={50} src='/h.png'/>
-          <div className='flex cursor-pointer'>
-            <div className='text-4xl '> H</div>
-            <div className='self-end'> urricane</div>
-          </div>
-          <div className='hidden sm:flex gap-4 sm:gap-10 md:gap-16 flex-grow text-xl  justify-end '>
-            <div>
-              Services
+        <StateContext>
+          <div className="h-30 bg-white flex items-end text-2xl gap-1 p-1 xs:p-2 sm:p-3">
+            <Image className='cursor-pointer' width={50} height={50} src='/h.png'/>
+            <div className='flex cursor-pointer'>
+              <div className='text-4xl '> H</div>
+              <div className='self-end'> urricane</div>
             </div>
-            <div>
-              Pricing
+            <div className='hidden sm:flex gap-4 sm:gap-10 md:gap-16 flex-grow text-xl  justify-end '>
+              <div>
+                Services
+              </div>
+              <div>
+                Pricing
+              </div>
+              <Chat/>
             </div>
-            <BsFillEnvelopeFill className=' cursor-pointer text-4xl ml-2 text-orange-600'/>
+            <Menu/>
           </div>
-          <Menu/>
-        </div>
-        {children}
+          {children}
+        </StateContext>
       </body>
     </html>
   )

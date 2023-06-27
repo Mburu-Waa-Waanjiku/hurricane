@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+input,textarea {
+  @apply border p-2  outline-none ring-transparent  focus:ring;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 220, 220, 220;
@@ -10,13 +14,22 @@
   --background-whitelucent-rgb: 255, 255, 255, 0.8;
   --background-transparent-rgb: 255, 255, 255, 0;
 }
-
+input, textarea, ::after, ::before {
+  border-top-color: transparent !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  border-bottom-color: gray !important;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
+}
+.chatboxsize {
+  width: 400px;
+  height: 350px;
 }
 .maxb-height {
   height: 80vh;
@@ -33,6 +46,10 @@
   max-height: 95vh;
 }
 @media screen and (max-width:600px ) {
+  .chatboxsize {
+    width: 100%;
+    height: 100%;
+  }
   .ideasHeight {
     height: 85vh;
   }

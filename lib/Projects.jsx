@@ -19,35 +19,21 @@ export default function Projects() {
   ]
 
   return (
-    <div className="flex flex-col items-center w-full mt-10 justify-center">
+    <div className="flex h-1/4 flex-col items-center w-full mt-10 justify-center">
       <div className="text-4xl mb-4">
         Recent Projects
       </div>
       <Swiper
-        breakpoints={{
-          100: {
-            slidesPerView: 1,
-          },
-          450: {
-            slidesPerView: 2,
-          }, 
-          520: {
-            slidesPerView: 3,
-          }, 
-          850: {
-            slidesPerView: 4,
-          },            
-        }}
         effect={"coverflow"}
         grabCursor={true}
-        style={{width: "100%"}}
+        slidesPerView={1}
         spaceBetween={10}
         modules={[Pagination, Autoplay,]}
         pagination={false}
         loop={false}
       >
         {recentPs.map((items) => (
-          <SwiperSlide>
+          <SwiperSlide style={{maxWidth: '351px'}}>
             <Link href={items.url}>
               <div className="w-full">
                 <Image className="rounded-2xl" src={items.image} width={1366} height={768} alt=""/>

@@ -12,8 +12,8 @@ export const StateContext = ({ children }) => {
             const loader = document.getElementById('splasher');
         if (loader)
           loader.style.display = 'none';
-          
-    }
+          setSplashPage(false) 
+        }
     }, []);
 
   const [openChat, setOpenChat] = useState(false);

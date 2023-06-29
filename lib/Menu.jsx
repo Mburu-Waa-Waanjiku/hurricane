@@ -17,7 +17,7 @@ export default function Menu() {
   return (
     <>
       {spashPage &&
-        <div className='z-40 fixed flex justify-center items-center left-0 top-0 w-full h-screen bg-black'>
+        <div id="splasher" className='z-40 fixed flex justify-center items-center left-0 top-0 w-full h-screen bg-black'>
           <Image className='animate-pulse' style={{maxWidth: "20%", height:"auto"}} width={300} height={300} src='/h.png'/>
         </div>
       }

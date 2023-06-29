@@ -1,16 +1,20 @@
 "use client"
 
-import { createContext, useState, useContext, } from 'react';
+import { createContext, useState, useEffect, useContext, } from 'react';
 
 const Context = createContext();
 
 export const StateContext = ({ children }) => {
 
   const [spashPage, setSplashPage] = useState(true);
-  window.onload = async function () { 
-    await new Promise(resolve => setTimeout(resolve, 5000));
-    setSplashPage(false) 
-  };
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+            const loader = document.getElementById('splasher');
+        if (loader)
+          loader.style.display = 'none';
+          
+    }
+    }, []);
 
   const [openChat, setOpenChat] = useState(false);
   const handleChatopen = () => {

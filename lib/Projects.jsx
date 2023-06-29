@@ -19,18 +19,19 @@ export default function Projects() {
   ]
 
   return (
-    <div className="flex h-1/4 flex-col items-center w-full mt-10 justify-center">
+    <div className="flex flex-col items-center w-full mt-10 justify-center">
       <div className="text-4xl mb-4">
         Recent Projects
       </div>
       <Swiper
+        slidesPerView={1}
         effect={"coverflow"}
         grabCursor={true}
-        slidesPerView={1}
         spaceBetween={10}
         modules={[Pagination, Autoplay,]}
         pagination={false}
         loop={false}
+        className="w-full xxsm:w-96"
       >
         {recentPs.map((items) => (
           <SwiperSlide style={{maxWidth: '351px'}}>

@@ -22,7 +22,7 @@ export default function Ecard() {
 
   return (
     <div>
-      <div className="grid gap-4 mb-12 grid-cols-1 sm:grid-cols-9">
+      <div id="Services" className="grid gap-4 mb-12 grid-cols-1 sm:grid-cols-9">
         <div className="hidden sm:block col-start-1 p-3 col-span-3">
           <div className="rounded-3xl p-6 mytransparentbg overflow-hidden">
             <div className="px-4 text-center mb-4 text-2xl">

@@ -3,7 +3,7 @@ import { BsFillCheckCircleFill, BsArrowRightShort } from "react-icons/bs"
 
 export default function Fcard() {
   return (
-    <div className="my-14 flex w-full flex-col justify-center items-center">
+    <div id="Pricing" className="my-14 flex w-full flex-col justify-center items-center">
       <div className="text-4xl mb-5 "> Pricing </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 w-full p-0.5 sm:p-4 sm:gap-2 md:p-8 mb:gap-5 mytransparentbg rounded-3xl ">
         {/* Web design Packages */}

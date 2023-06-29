@@ -7,6 +7,7 @@ import Ecard2 from '@/lib/Ecard2'
 import Fcard from '@/lib/Fcard'
 import Gfile from '@/lib/Gfile'
 import Chatbox from '@/lib/Chatbox'
+import Projects from '@/lib/Projects'
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <Ecard/>
       <Acard/>
       <Bcard/>
+      <Projects/>
       <Fcard/>
       <Gfile/>
       <Chatbox/>

@@ -21,7 +21,7 @@ export default function Ecard2() {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   return (
-    <div className="grid gap-4 mb-12 grid-cols-1 block sm:hidden ">
+    <div id="Services" className="grid gap-4 mb-12 grid-cols-1 block sm:hidden ">
       <div className="rounded-3xl bg-white overflow-hidden">
         <div className="pb-2 text-center text-2xl">
           Our Services

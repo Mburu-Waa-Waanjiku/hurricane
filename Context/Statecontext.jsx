@@ -6,6 +6,12 @@ const Context = createContext();
 
 export const StateContext = ({ children }) => {
 
+  const [spashPage, setSplashPage] = useState(true);
+  window.onload = async function () { 
+    await new Promise(resolve => setTimeout(resolve, 5000));
+    setSplashPage(false) 
+  };
+
   const [openChat, setOpenChat] = useState(false);
   const handleChatopen = () => {
     setOpenChat(true)
@@ -20,7 +26,8 @@ export const StateContext = ({ children }) => {
         openChat,
         setOpenChat,
         handleChatopen,
-        handleChatcleose
+        handleChatcleose,
+        spashPage
       }}
     >
       {children}

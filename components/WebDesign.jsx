@@ -12,15 +12,26 @@ const WebDesign = () => {
   const { setAniated, setOpenContacts } = useStateContext();
   const touchStartY = useRef(null);
   const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [windowHeight, setWindowHeight] = useState(0);
 
   useEffect(() => {
     setAniated(currentSlide !== 0);
   }, [currentSlide, setAniated]);
 
   useEffect(() => {
+    const handleResize = () => {
+      setWindowHeight(window.innerHeight);
+    };
+
+    handleResize(); // Set initial height
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       const currentScrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
 
       slidesRef.current.forEach((slide, index) => {
         if (slide) {
@@ -130,18 +141,19 @@ const WebDesign = () => {
 
   return (
     <div 
-      className="web-design-slides overflow-hidden h-screen"
+      className="web-design-slides overflow-hidden"
       onWheel={handleWheel}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', touchAction: 'none' }}
+      style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', touchAction: 'none', height: `${windowHeight}px` }}
     >
       {slides.map((slide, index) => (
         <div
           key={index}
           ref={el => slidesRef.current[index] = el}
-          className="slide h-screen w-full relative"
+          className="slide w-full relative"
+          style={{ height: `${windowHeight}px` }}
         >
           <Image
             src={slide.image}

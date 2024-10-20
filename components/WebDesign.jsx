@@ -93,20 +93,22 @@ const WebDesign = () => {
 
   const handleTouchMove = (event) => {
     event.preventDefault(); // Prevent default scrolling behavior
-  };
-
-  const handleTouchEnd = (event) => {
-    if (touchStartY.current === null) return;
-
-    const touchEndY = event.changedTouches[0].clientY;
+    if (!touchStartY.current) {
+      return;
+    }
+    const touchEndY = event.touches[0].clientY;
     const touchDiff = touchStartY.current - touchEndY;
 
     if (touchDiff > 50 && currentSlide < 6) {
       moveToSlide(currentSlide + 1);
+      touchStartY.current = null;
     } else if (touchDiff < -50 && currentSlide > 0) {
       moveToSlide(currentSlide - 1);
+      touchStartY.current = null;
     }
+  };
 
+  const handleTouchEnd = () => {
     touchStartY.current = null;
   };
 
@@ -133,7 +135,7 @@ const WebDesign = () => {
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', touchAction: 'none' }}
     >
       {slides.map((slide, index) => (
         <div

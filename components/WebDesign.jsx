@@ -91,7 +91,13 @@ const WebDesign = () => {
     touchStartY.current = event.touches[0].clientY;
   };
 
+  const handleTouchMove = (event) => {
+    event.preventDefault(); // Prevent default scrolling behavior
+  };
+
   const handleTouchEnd = (event) => {
+    if (touchStartY.current === null) return;
+
     const touchEndY = event.changedTouches[0].clientY;
     const touchDiff = touchStartY.current - touchEndY;
 
@@ -100,6 +106,8 @@ const WebDesign = () => {
     } else if (touchDiff < -50 && currentSlide > 0) {
       moveToSlide(currentSlide - 1);
     }
+
+    touchStartY.current = null;
   };
 
   const scrollToNextSlide = () => {
@@ -123,6 +131,7 @@ const WebDesign = () => {
       className="web-design-slides overflow-hidden h-screen"
       onWheel={handleWheel}
       onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
       style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
     >

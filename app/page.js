@@ -6,6 +6,7 @@ export const metadata = {
   icons: {
     icon: '/h.png',
   },
+  googleSiteVerification: 'ehyifMyuzZjrrJmMdqaTCAsoDerpHiSeejh92XkAQPI',
 };
 
 export default function Home() {

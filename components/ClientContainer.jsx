@@ -49,7 +49,7 @@ const ClientContainer = ({ name, path, description }) => {
   const reviews = [
     { id: 1, name: "Lewis Mwiti", content: "Great service! Highly recommended.", rating: 5, image: "/customer1.jpeg" },
     { id: 2, name: "Johanson Owiti", content: "Excellent work and professional team.", rating: 4, image: "/customer2.jpeg" },
-    { id: 3, name: "Mike Johnson", content: "Very satisfied with the results.", rating: 5, image: "/whiteman.jfif" },
+    { id: 3, name: "Mike Johnson", content: "Very satisfied with the results.", rating: 5, image: "/whiteman.jpg" },
     { id: 4, name: "Emily kanini", content: "Outstanding quality and attention to detail.", rating: 5, image: "/customer3.jpeg" },
     { id: 5, name: "David Lenana", content: "Responsive and helpful throughout the process.", rating: 4, image: "/customer4.jpeg" },
   ];
@@ -283,7 +283,7 @@ const ClientContainer = ({ name, path, description }) => {
             }
           }}
         >
-          <span>Click to see next slide</span>
+          <span>Our Happy Clients</span>
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 arrow-down" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
           </svg>

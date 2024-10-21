@@ -42,7 +42,7 @@ const ClientContainer = ({ name, path, description }) => {
     return () => clearInterval(autoplayInterval);
   }, [navigateSlide]);
   
-  const [activeTab, setActiveTab] = useState('reviews');
+  const [activeTab, setActiveTab] = useState('partners');
   const [currentReviewSlide, setCurrentReviewSlide] = useState(0);
   const reviewsPerSlide = 1;
 
@@ -153,16 +153,6 @@ const ClientContainer = ({ name, path, description }) => {
             <div className="flex justify-center gap-4 md:gap-12 space-x-4 p-4 mb-4">
               <button
                 className={`px-4 py-2 rounded-full w-48 whitespace-nowrap transition-all duration-300 ${
-                  activeTab === 'reviews'
-                    ? 'bg-gradient-to-r from-gray-700 via-gray-900 to-black hover:from-gray-900 text-white'
-                    : 'bg-white bg-opacity-50 text-gray-700 hover:bg-opacity-75'
-                }`}
-                onClick={() => setActiveTab('reviews')}
-              >
-                Customer Reviews
-              </button>
-              <button
-                className={`px-4 py-2 rounded-full w-48 whitespace-nowrap transition-all duration-300 ${
                   activeTab === 'partners'
                     ? 'bg-gradient-to-r text-white from-gray-700 via-gray-900 to-black hover:from-gray-900'
                     : 'bg-white bg-opacity-50 text-gray-700 hover:bg-opacity-75'
@@ -170,6 +160,16 @@ const ClientContainer = ({ name, path, description }) => {
                 onClick={() => setActiveTab('partners')}
               >
                 Our Partners
+              </button>
+              <button
+                className={`px-4 py-2 rounded-full w-48 whitespace-nowrap transition-all duration-300 ${
+                  activeTab === 'reviews'
+                    ? 'bg-gradient-to-r from-gray-700 via-gray-900 to-black hover:from-gray-900 text-white'
+                    : 'bg-white bg-opacity-50 text-gray-700 hover:bg-opacity-75'
+                }`}
+                onClick={() => setActiveTab('reviews')}
+              >
+                Customer Reviews
               </button>
             </div>
             
@@ -284,7 +284,7 @@ const ClientContainer = ({ name, path, description }) => {
           }}
         >
           <span>Our Happy Clients</span>
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 arrow-down" viewBox="0 0 20 20" fill="currentColor">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 arrow-down animate-bounce" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
           </svg>
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 arrow-up hidden" viewBox="0 0 20 20" fill="currentColor">

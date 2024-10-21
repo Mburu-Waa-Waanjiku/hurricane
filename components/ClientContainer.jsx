@@ -47,19 +47,18 @@ const ClientContainer = ({ name, path, description }) => {
   const reviewsPerSlide = 1;
 
   const reviews = [
-    { id: 1, name: "John Doe", content: "Great service! Highly recommended.", rating: 5, image: "/john-doe.jpg" },
-    { id: 2, name: "Jane Smith", content: "Excellent work and professional team.", rating: 4, image: "/jane-smith.jpg" },
-    { id: 3, name: "Mike Johnson", content: "Very satisfied with the results.", rating: 5, image: "/mike-johnson.jpg" },
-    { id: 4, name: "Emily Brown", content: "Outstanding quality and attention to detail.", rating: 5, image: "/emily-brown.jpg" },
-    { id: 5, name: "David Lee", content: "Responsive and helpful throughout the process.", rating: 4, image: "/david-lee.jpg" },
+    { id: 1, name: "Lewis Mwiti", content: "Great service! Highly recommended.", rating: 5, image: "/customer1.jpeg" },
+    { id: 2, name: "Johanson Owiti", content: "Excellent work and professional team.", rating: 4, image: "/customer2.jpeg" },
+    { id: 3, name: "Mike Johnson", content: "Very satisfied with the results.", rating: 5, image: "/whiteman.jfif" },
+    { id: 4, name: "Emily kanini", content: "Outstanding quality and attention to detail.", rating: 5, image: "/customer3.jpeg" },
+    { id: 5, name: "David Lenana", content: "Responsive and helpful throughout the process.", rating: 4, image: "/customer4.jpeg" },
   ];
 
   const partners = [
-    { id: 1, name: "TechCorp", logo: "/techcorp-logo.png" },
-    { id: 2, name: "InnovateSoft", logo: "/innovatesoft-logo.png" },
-    { id: 3, name: "DigitalDynamics", logo: "/digitaldynamics-logo.png" },
-    { id: 4, name: "FutureTech", logo: "/futuretech-logo.png" },
-    // Add more partners as needed
+    { id: 1, name: "DPO PAY", logo: "/dpo.svg" },
+    { id: 2, name: "SAFARICOM", logo: "/safaricom.png" },
+    { id: 3, name: "AFRICA'S TALKING", logo: "/talkingafrica.png" },
+    { id: 4, name: "AIRTEL", logo: "/airtel.svg" },
   ];
 
   const handleTabClick = (tab) => {
@@ -232,7 +231,7 @@ const ClientContainer = ({ name, path, description }) => {
               </div>
               
               <div className={`h-full ${activeTab === 'partners' ? 'block' : 'hidden'}`}>
-                <div className="h-full flex items-center overflow-hidden">
+                <div className="h-3/4 flex items-center overflow-hidden">
                   <div className="flex animate-scroll" style={{ animation: 'scroll 5s linear infinite' }}>
                     {partners.concat(partners).map((partner, index) => (
                       <div key={index} className="flex-shrink-0 w-48 h-48 mx-4 bg-white bg-opacity-50 rounded-lg p-4 transition-all duration-300 hover:bg-opacity-75 hover:shadow-lg">
@@ -271,13 +270,13 @@ const ClientContainer = ({ name, path, description }) => {
             const arrowUp = button.querySelector('.arrow-up');
             if (container.style.transform === 'translateY(-100%)') {
               container.style.transform = 'translateY(0)';
-              button.querySelector('span').textContent = 'Click to see next slide';
+              button.querySelector('span').textContent = 'Our Happy Clients';
               arrowDown.classList.remove('hidden');
               arrowUp.classList.add('hidden');
               setAniated(false);
             } else {
               container.style.transform = 'translateY(-100%)';
-              button.querySelector('span').textContent = 'Click to return to top';
+              button.querySelector('span').textContent = 'Return to the top';
               arrowDown.classList.add('hidden');
               arrowUp.classList.remove('hidden');
               setAniated(true);

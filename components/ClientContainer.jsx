@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useStateContext } from '../utils/StateContext';
 
 const ClientContainer = ({ name, path, description }) => {
@@ -16,6 +16,8 @@ const ClientContainer = ({ name, path, description }) => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const { setAniated } = useStateContext();
+  const touchStartX = useRef(null);
+  const touchEndX = useRef(null);
 
   const navigateSlide = useCallback((direction) => {
     const totalSlides = services.length;
@@ -28,6 +30,27 @@ const ClientContainer = ({ name, path, description }) => {
     }
   }, [services.length]);
 
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current && touchEndX.current) {
+      const diff = touchStartX.current - touchEndX.current;
+      if (diff > 50) {
+        navigateSlide('next');
+      } else if (diff < -50) {
+        navigateSlide('prev');
+      }
+    }
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
+
   useEffect(() => {
     const container = document.getElementById('slidesContainer');
     const slideWidth = container.clientWidth;
@@ -37,7 +60,7 @@ const ClientContainer = ({ name, path, description }) => {
   useEffect(() => {
     const autoplayInterval = setInterval(() => {
       navigateSlide('next');
-    }, 5000); // Change slide every 5 seconds
+    }, 8000); // Change slide every 5 seconds
 
     return () => clearInterval(autoplayInterval);
   }, [navigateSlide]);
@@ -90,7 +113,13 @@ const ClientContainer = ({ name, path, description }) => {
         <div className="absolute inset-0 transition-transform duration-500 ease-in-out" id="slideContainer">
           {/* Slides Container */}
           <div className="h-screen relative overflow-hidden">
-            <div className="flex transition-transform duration-500 ease-in-out" id="slidesContainer">
+            <div 
+              className="flex transition-transform duration-500 ease-in-out" 
+              id="slidesContainer"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
               {services.map((service, index) => (
                 <div key={index} className="h-screen w-screen flex-shrink-0 relative">
                   <Image

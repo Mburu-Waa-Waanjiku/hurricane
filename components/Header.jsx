@@ -5,11 +5,12 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useStateContext } from '@/utils/StateContext';
+import ContactInfo from './ContactInfo';
 
 const Header = () => {
   const pathname = usePathname();
   const [headerState, setHeaderState] = useState('initial');
-  const { animated } = useStateContext();
+  const { animated, openContacts, setOpenContacts } = useStateContext();
   const isActive = (path) => pathname.startsWith(path);
 
   useEffect(() => {
@@ -97,7 +98,7 @@ const Header = () => {
               ))}
             </div>
           </div>
-          <div className="flex justify-end grow md:grow-0  items-center">
+          <div onClick={() => openContacts ? setOpenContacts(false) : setOpenContacts(true)} className="flex justify-end grow md:grow-0  items-center">
             <div className="border-2 border-black mr-4 md:mr-0 rounded-full px-4 py-2 flex items-center space-x-2">
               <span className="text-center whitespace-nowrap">Contact Us</span>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -118,6 +119,7 @@ const Header = () => {
           </div>
         </div>
       </nav>
+      <ContactInfo />
     </header>
   );
 };

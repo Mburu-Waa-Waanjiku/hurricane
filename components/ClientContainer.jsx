@@ -5,8 +5,10 @@ import Image from 'next/image';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useStateContext } from '../utils/StateContext';
 
+// ClientContainer component: Manages the main content area with service slides and client testimonials
 const ClientContainer = ({ name, path, description }) => {
 
+  // Array of services offered, each with name, path, description, and image
   const services = [
     { name: 'Web Design', path: '/services/web-design', description: 'Transform your online presence with stunning, responsive websites. Let\'s create your digital masterpiece today!', image: '/webdesign.jpg' },
     { name: 'Mobile App', path: '/services/mobile-app', description: 'Bring your ideas to life with cutting-edge mobile apps. Ready to revolutionize the app store? Let\'s get started!', image: '/mobileapp.jpg' },
@@ -14,11 +16,14 @@ const ClientContainer = ({ name, path, description }) => {
     { name: 'SaaS', path: '/services/saas', description: 'Streamline your business with custom SaaS solutions. Ready to increase efficiency and scale your operations? Let\'s build your perfect SaaS product!', image: '/saas.jpg' },
   ];
 
+  // State variables
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [windowHeight, setWindowHeight] = useState(0);
   const { setAniated } = useStateContext();
   const touchStartX = useRef(null);
   const touchEndX = useRef(null);
 
+  // Function to navigate between slides
   const navigateSlide = useCallback((direction) => {
     const totalSlides = services.length;
     if (direction === 'next') {
@@ -30,6 +35,7 @@ const ClientContainer = ({ name, path, description }) => {
     }
   }, [services.length]);
 
+  // Touch event handlers for mobile swipe functionality
   const handleTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -51,24 +57,40 @@ const ClientContainer = ({ name, path, description }) => {
     touchEndX.current = null;
   };
 
+  // Effect to update slide container transform on slide change
   useEffect(() => {
     const container = document.getElementById('slidesContainer');
     const slideWidth = container.clientWidth;
     container.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
   }, [currentSlide]);
 
+  // Effect for auto-playing slides
   useEffect(() => {
     const autoplayInterval = setInterval(() => {
       navigateSlide('next');
-    }, 8000); // Change slide every 5 seconds
+    }, 8000); // Change slide every 8 seconds
 
     return () => clearInterval(autoplayInterval);
   }, [navigateSlide]);
+
+  // Effect for handling window resize and setting initial height
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowHeight(window.innerHeight);
+    };
+
+    handleResize(); // Set initial height
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   
+  // State for managing tabs and review slides
   const [activeTab, setActiveTab] = useState('partners');
   const [currentReviewSlide, setCurrentReviewSlide] = useState(0);
   const reviewsPerSlide = 1;
 
+  // Array of customer reviews
   const reviews = [
     { id: 1, name: "Lewis Mwiti", content: "Great service! Highly recommended.", rating: 5, image: "/customer1.jpeg" },
     { id: 2, name: "Johanson Owiti", content: "Excellent work and professional team.", rating: 4, image: "/customer2.jpeg" },
@@ -77,6 +99,7 @@ const ClientContainer = ({ name, path, description }) => {
     { id: 5, name: "David Lenana", content: "Responsive and helpful throughout the process.", rating: 4, image: "/customer4.jpeg" },
   ];
 
+  // Array of partner companies
   const partners = [
     { id: 1, name: "DPO PAY", logo: "/dpo.svg" },
     { id: 2, name: "SAFARICOM", logo: "/safaricom.png" },
@@ -84,10 +107,12 @@ const ClientContainer = ({ name, path, description }) => {
     { id: 4, name: "AIRTEL", logo: "/airtel.svg" },
   ];
 
+  // Function to handle tab changes
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
 
+  // Function to navigate between review slides
   const navigateReviewSlide = useCallback((direction) => {
     const totalReviewSlides = reviews.length;
     if (direction === 'next') {
@@ -97,6 +122,7 @@ const ClientContainer = ({ name, path, description }) => {
     }
   }, [reviews.length]);
 
+  // Effect for auto-playing review slides
   useEffect(() => {
     const autoplayInterval = setInterval(() => {
       if (activeTab === 'reviews') {
@@ -112,7 +138,7 @@ const ClientContainer = ({ name, path, description }) => {
       <div className="flex-grow overflow-hidden relative">
         <div className="absolute inset-0 transition-transform duration-500 ease-in-out" id="slideContainer">
           {/* Slides Container */}
-          <div className="h-screen relative overflow-hidden">
+          <div style={{ height: `${windowHeight}px` }} className=" relative overflow-hidden">
             <div 
               className="flex transition-transform duration-500 ease-in-out" 
               id="slidesContainer"
@@ -121,7 +147,7 @@ const ClientContainer = ({ name, path, description }) => {
               onTouchEnd={handleTouchEnd}
             >
               {services.map((service, index) => (
-                <div key={index} className="h-screen w-screen flex-shrink-0 relative">
+                <div key={index} style={{ height: `${windowHeight}px` }} className=" w-screen flex-shrink-0 relative">
                   <Image
                     src={service.image}
                     alt={service.name}
@@ -177,8 +203,9 @@ const ClientContainer = ({ name, path, description }) => {
             </div>
           </div>
           
-          {/* Second Slide */}
-          <div className="h-screen flex flex-col bg-gradient-to-br from-blue-100 via-purple-50 to-pink-100 overflow-hidden pt-16">
+          {/* Second Slide - Partners and Reviews */}
+          <div style={{ height: `${windowHeight}px` }} className=" flex flex-col bg-gradient-to-br from-blue-100 via-purple-50 to-pink-100 overflow-hidden pt-16">
+            {/* Tab buttons */}
             <div className="flex justify-center gap-4 md:gap-12 space-x-4 p-4 mb-4">
               <button
                 className={`px-4 py-2 rounded-full w-48 whitespace-nowrap transition-all duration-300 ${
@@ -203,6 +230,7 @@ const ClientContainer = ({ name, path, description }) => {
             </div>
             
             <div className="flex-1 transition-opacity duration-500 ease-in-out">
+              {/* Reviews Section */}
               <div className={`h-full ${activeTab === 'reviews' ? 'block' : 'hidden'}`}>
                 <div className="relative h-full overflow-hidden">
                   <div
@@ -240,6 +268,7 @@ const ClientContainer = ({ name, path, description }) => {
                       </div>
                     ))}
                   </div>
+                  {/* Review navigation buttons */}
                   <button
                     className="absolute -translate-y-28 top-1/2 left-2 sm:left-4 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-1 sm:p-2 focus:outline-none transition duration-300"
                     onClick={() => navigateReviewSlide('prev')}
@@ -259,6 +288,7 @@ const ClientContainer = ({ name, path, description }) => {
                 </div>
               </div>
               
+              {/* Partners Section */}
               <div className={`h-full ${activeTab === 'partners' ? 'block' : 'hidden'}`}>
                 <div className="h-3/4 flex items-center overflow-hidden">
                   <div className="flex animate-scroll" style={{ animation: 'scroll 5s linear infinite' }}>
@@ -288,6 +318,7 @@ const ClientContainer = ({ name, path, description }) => {
         </div>
       </div>
       
+      {/* Button to toggle between main content and client testimonials */}
       <div className="w-full">
         <button 
           id="slideButton"

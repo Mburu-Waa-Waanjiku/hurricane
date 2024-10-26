@@ -8,5 +8,138 @@
   font-family: 'Varela Round', sans-serif;
 }
 
+abbr {
+  text-decoration: none;
+}
+
+.phone-input {
+  width: 80%;
+  padding: 10px;
+  border-bottom: 1px solid #db532a !important;
+  border-radius: 0px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  outline: none;
+  font-family: 'Varela Round', sans-serif;
+}
+
+.phone-input:focus {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+.phone-input::placeholder {
+  color: #999;
+}
+
+.react-calendar__tile {
+  border-radius: 10%;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  margin: 4px;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: rgba(219, 83, 42, 0.1);
+}
+
+.react-calendar__tile--now {
+  background-color: rgba(219, 83, 42, 0.2);
+}
+
+.react-calendar__tile--active {
+  background-color: #db532a !important;
+  color: white;
+}
+
+.react-calendar__month-view__days__day {
+  max-width: calc(100% / 7 - 4px) !important;
+}
+
+.react-calendar__month-view__days {
+  gap: 4.6px;
+}
+
+.time-slots button {
+  background-color: rgba(219, 83, 42, 0.2);
+  color: black;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.time-slots button:hover {
+  background-color: #db532a;
+  color: white;
+}
+
+.time-slots button.selected {
+  background-color: #db532a;
+  color: white;
+}
+
+.react-calendar {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: white;
+  border: 2px solid #db532a;
+  color: black;
+}
+
+.react-calendar__navigation {
+  background-color: #db532a;
+}
+
+.react-calendar__navigation button {
+  color: white;
+}
+
+.react-calendar__tile--active {
+  background-color: #db532a !important;
+  color: white;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: #f0f0f0;
+}
+
+.react-calendar__tile--now {
+  background-color: #f0f0f0;
+  color: #db532a;
+}
+
+@media (max-width: 500px) {
+  .react-calendar {
+    font-size: 0.8rem;
+    max-width: 280px !important;
+    width: 100% !important;
+  }
+
+  .react-calendar__tile {
+    padding: 0.5em 0.25em;
+  }
+
+  .time-slots button {
+    font-size: 0.8rem;
+    padding: 0.5em;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

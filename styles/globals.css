@@ -1,9 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
-@import './fonts.css';
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  .font-humane {
+    font-family: var(--font-humane);
+  }
+
+  .font-caveat {
+    font-family: var(--font-caveat);
+  }
+}
 
 /* Custom animations */
 @keyframes fadeIn {

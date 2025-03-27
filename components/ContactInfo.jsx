@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useStateContext } from '../utils/StateContext';
-import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import { FaArrowRight, FaArrowLeft, FaWhatsapp } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import Calendar from '../components/Calendar';
 import Image from 'next/image';
@@ -25,6 +25,14 @@ const ContactInfo = () => {
     const [reception, setReception] = useState(false);
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [direction, setDirection] = useState(1); // 1 for forward, -1 for backward
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedTime, setSelectedTime] = useState(null);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+
+    // WhatsApp phone number
+    const whatsappNumber = '254704065652';
 
     // Available service options
     const options = [
@@ -236,6 +244,69 @@ const ContactInfo = () => {
         }
     };
 
+    // Function to format booking data for WhatsApp
+    const formatBookingData = () => {
+        let message = `*New Booking Request*\n\n`;
+        
+        // Add selected services
+        message += `*Selected Services:*\n`;
+        selectedOptions.forEach(option => {
+            message += `- ${option}\n`;
+        });
+        
+        // Add answers to questions
+        message += `\n*Responses:*\n`;
+        Object.keys(answers).forEach(service => {
+            message += `\n*${service}*\n`;
+            Object.keys(answers[service]).forEach(question => {
+                message += `${question}: ${answers[service][question]}\n`;
+            });
+        });
+        
+        // Add booking details
+        if (selectedDate) {
+            message += `\n*Booking Date:* ${selectedDate.toDateString()}\n`;
+        }
+        if (selectedTime) {
+            message += `*Booking Time:* ${selectedTime}\n`;
+        }
+        
+        // Add contact information
+        message += `\n*Contact Information:*\n`;
+        if (name) message += `Name: ${name}\n`;
+        if (email) message += `Email: ${email}\n`;
+        if (phone) message += `Phone: ${phone}\n`;
+        
+        return encodeURIComponent(message);
+    };
+
+    // Function to send data to WhatsApp
+    const sendToWhatsApp = () => {
+        const formattedData = formatBookingData();
+        window.open(`https://wa.me/${whatsappNumber}?text=${formattedData}`, '_blank');
+        
+        // Reset form after sending
+        setTimeout(() => {
+            setOpenContacts(false);
+            setShowBooking(false);
+            setShowSelected(false);
+            setSelectedOptions([]);
+            setCurrentOptionIndex(0);
+            setCurrentQuestionIndex(0);
+            setAnswers({});
+            setSelectedDate(null);
+            setSelectedTime(null);
+            setName('');
+            setEmail('');
+            setPhone('');
+        }, 1000);
+    };
+
+    // Function to open WhatsApp chat
+    const openWhatsAppChat = () => {
+        window.open(`https://wa.me/${whatsappNumber}`, '_blank');
+    };
+
     // Animation variants for fading effect
     const fadeVariants = {
         hidden: { opacity: 0 },
@@ -280,11 +351,11 @@ const ContactInfo = () => {
                             </svg>
                             </div>
                         </div> :
-                        <div className='p-8 fixed z-[999] bottom-8 rounded-xl right-8 w-[300px] sm:w-[400px] bg-white/50 backdrop-filter backdrop-blur-sm border border-white/40 gap-3 shadow-lg flex flex-col justify-around items-center'>
+                        <div className='p-8 text-white fixed z-[999] bottom-8 rounded-xl right-8 w-[300px] sm:w-[400px] bg-white/30 backdrop-filter backdrop-blur-sm border border-white/40 gap-3 shadow-lg flex flex-col justify-around items-center'>
                             <div className='relative w-full'>
                                 <BsDashCircle onClick={() => reception ? setReception(false) : setReception(true)} className='absolute text-xl right-0'/>
                             </div>
-                            <div className='cute text-xl font-medium'>Let’s talk about your project</div>
+                            <div className='cute text-xl  font-medium'>Let's talk about your project</div>
                             <div className='aspect-square rounded-full overflow-hidden w-24 relative'>
                                 <Image
                                     fill
@@ -297,15 +368,24 @@ const ContactInfo = () => {
                                 <div className='w-full text-center'>Kelvin Mburu</div>
                                 <div className='text-[10px] leading-4 font-[450]'>Chief UI/UX Designer</div>
                             </div>
-                            <div className='mx-4'>
-                                <div onClick={() => openContacts ? setOpenContacts(false) : setOpenContacts(true)} className='w-full rounded-lg font-[480] bg-green-400 text-center pt-2 pb-3 text-base'>Let’s talk</div>
-                                <div className='text-green-400 text-base text-center pt-3 '>livebiashara@outlook.com</div>
+                            <div className='mx-4 w-full'>
+                                <div onClick={() => openContacts ? setOpenContacts(false) : setOpenContacts(true)} className='w-full rounded-lg font-[480] bg-green-400 text-center pt-2 pb-3 text-base'>Let's talk</div>
+                                <div className='text-green-400 text-base text-center pt-3 '>tech.we@outlook.com</div>
+                                
+                                {/* WhatsApp button */}
+                                <div 
+                                    onClick={openWhatsAppChat} 
+                                    className='w-full rounded-lg font-[480] bg-green-600 hover:bg-green-700 text-white text-center mt-3 py-2 flex items-center justify-center cursor-pointer transition-colors duration-300'
+                                >
+                                    <FaWhatsapp className="mr-2 text-xl" />
+                                    Chat on WhatsApp
+                                </div>
                             </div>
                         </div>
                     }
                 </> :
                 <div
-                    className={`fixed z-[999] bottom-4 right-4 bg-white/30 backdrop-filter backdrop-blur-sm border border-white/40 rounded-lg shadow-lg p-6 transition-all duration-300 ease-in-out transform ${
+                    className={`fixed z-[999] bottom-4  right-4 bg-white/30 backdrop-filter backdrop-blur-sm border border-white/40 rounded-lg shadow-lg p-6 transition-all duration-300 ease-in-out transform ${
                         openContacts ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
                     } ${isVisible ? 'visible' : 'invisible'}`}
                     style={{
@@ -339,22 +419,61 @@ const ContactInfo = () => {
                     </button>
                     {showBooking ? (
                         // Render booking component
-                        <div className="h-full flex flex-col">
-                            <h3 className="text-2xl cute font-semibold mb-6 text-center">Book a Consultation</h3>
+                        <div className="h-full flex  flex-col">
+                            <h3 className="text-2xl text-white cute font-semibold mb-6 text-center">Book a Consultation</h3>
                             <div className="flex-grow flex flex-col items-center justify-start overflow-y-auto">
-                                <Calendar />
+                                <Calendar 
+                                    onDateSelect={setSelectedDate}
+                                    onTimeSelect={setSelectedTime}
+                                />
+                                
+                                {/* Contact information form */}
+                                <div className="w-full mt-4 space-y-3">
+                                    <h4 className="font-medium text-white text-lg">Your Contact Information</h4>
+                                    <input
+                                        type="text"
+                                        placeholder="Your Name"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        className="w-full p-2 border border-gray-300 rounded"
+                                    />
+                                    <input
+                                        type="email"
+                                        placeholder="Your Email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        className="w-full p-2 border border-gray-300 rounded"
+                                    />
+                                    <input
+                                        type="tel"
+                                        placeholder="Your Phone"
+                                        value={phone}
+                                        onChange={(e) => setPhone(e.target.value)}
+                                        className="w-full p-2 border border-gray-300 rounded"
+                                    />
+                                </div>
                             </div>
-                            <button
-                                onClick={() => setShowBooking(false)}
-                                className="mt-4 text-primary hover:text-primary-dark"
-                            >
-                                Back to Questions
-                            </button>
+                            <div className="flex justify-between mt-4">
+                                <button
+                                    onClick={() => setShowBooking(false)}
+                                    className="text-primary hover:text-primary-dark"
+                                >
+                                    Back to Questions
+                                </button>
+                                <button
+                                    onClick={sendToWhatsApp}
+                                    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded flex items-center"
+                                    disabled={!selectedDate || !selectedTime}
+                                >
+                                    <FaWhatsapp className="mr-2" />
+                                    Confirm via WhatsApp
+                                </button>
+                            </div>
                         </div>
                     ) : showSelected ? (
                         // Render questions for selected options
                         <div className="h-full flex flex-col">
-                            <h3 className="text-2xl cute font-semibold mb-6 text-center">{`Help Us Know More About Your ${selectedOptions[currentOptionIndex]}`}</h3>
+                            <h3 className="text-2xl cute text-white font-semibold mb-6 text-center">{`Help Us Know More About Your ${selectedOptions[currentOptionIndex]}`}</h3>
                             {questions[selectedOptions[currentOptionIndex]] && (
                                 <AnimatePresence initial={false} custom={direction}>
                                     <motion.div
@@ -370,7 +489,7 @@ const ContactInfo = () => {
                                         }}
                                         className="flex-grow flex flex-col items-center justify-center"
                                     >
-                                        <p className="font-semibold mb-4 text-center">{questions[selectedOptions[currentOptionIndex]][currentQuestionIndex].question}</p>
+                                        <p className="font-semibold text-white mb-4 text-center">{questions[selectedOptions[currentOptionIndex]][currentQuestionIndex].question}</p>
                                         <div className="flex flex-wrap justify-center gap-2">
                                             {questions[selectedOptions[currentOptionIndex]][currentQuestionIndex].options.map((option, optionIndex) => (
                                                 <motion.button
@@ -404,7 +523,7 @@ const ContactInfo = () => {
                     ) : (
                         // Render initial options selection
                         <div className="h-full flex flex-col">
-                            <h3 className="text-2xl cute font-semibold mb-6 text-center">Please select the service you need</h3>
+                            <h3 className="text-2xl cute font-semibold text-white mb-6 text-center">Please select the service you need</h3>
                             <div className="flex-grow flex items-center justify-center">
                                 <div className="flex flex-wrap justify-center gap-3">
                                     {options.map((option, index) => (

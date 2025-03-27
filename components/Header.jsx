@@ -12,6 +12,8 @@ const Header = () => {
   const [headerState, setHeaderState] = useState('initial');
   const { animated, openContacts, setOpenContacts } = useStateContext();
   const isActive = (path) => pathname.startsWith(path);
+  //Remove later and return isActive
+  const [highlignt, setHighlight] = useState('Services');
 
   useEffect(() => {
     if (animated) {
@@ -50,28 +52,7 @@ const Header = () => {
         <div className={"flex justify-start items-center min-w-12 min-h-12"}>
           <Image className={headerState === 'rounded' ? 'rounded-full md:ml-3 overflow-hidden' : ''} src="/h.png" alt="Logo" width={50} height={50} />
         </div>
-        <div className='flex w-full justify-between items-center'>
-          {/* Desktop Menu */}
-          <div className='hidden md:flex grow justify-center items-center'>
-            <div className={`max-w-md rounded-md bg-gray-100 w-full flex justify-between items-center ${headerState === 'rounded' ? '!rounded-full' : ''}`}>
-                {[
-                  { name: 'Services', path: '/' },
-                  { name: 'Explore', path: '/explore' },
-                ].map(({ name, path }) => (
-                  <Link
-                    key={path}
-                    href={path}
-                    className={`px-4 py-2 w-48 rounded-md w-42 flex justify-center transition-all whitespace-nowrap duration-300 ${
-                      isActive(path)
-                        ? 'bg-primary text-white'
-                        : 'bg-gray-200 text-black hover:bg-primary hover:text-white'
-                    } ${ headerState === 'rounded' ? '!rounded-full' : ''}`}
-                  >
-                    {name}
-                  </Link>
-                ))}
-            </div>
-          </div>
+        <div className='flex w-full justify-end items-center'>
           {/* Mobile Menu */}
           <div className={`md:hidden fixed top-4 right-0 z-50 bg-white transform ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-[120%]'} transition-transform duration-300 ease-in-out w-2/3 h-1/2 rounded-l-lg shadow-xl`}>
             <div className='flex flex-col h-full justify-center items-center space-y-8'>
@@ -85,7 +66,7 @@ const Header = () => {
               </button>
               {[
                 { name: 'Services', path: '/' },
-                { name: 'Explore', path: '/explore' },
+                { name: 'Explore', path: '/' },
               ].map(({ name, path }) => (
                 <Link
                   key={path}

@@ -1,8 +1,13 @@
+'use client'
+
 import React, { useState, useEffect } from 'react';
 import { useStateContext } from '../utils/StateContext';
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import Calendar from '../components/Calendar';
+import Image from 'next/image';
+import { BsDashCircle } from "react-icons/bs";
+import { ArrowBigDown } from 'lucide-react';
 
 // ContactInfo component for handling user service selection and questionnaire
 const ContactInfo = () => {
@@ -17,6 +22,7 @@ const ContactInfo = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [answers, setAnswers] = useState({});
     const [showBooking, setShowBooking] = useState(false);
+    const [reception, setReception] = useState(false);
     const [isTransitioning, setIsTransitioning] = useState(false);
     const [direction, setDirection] = useState(1); // 1 for forward, -1 for backward
 
@@ -262,144 +268,181 @@ const ContactInfo = () => {
     // Render the component
     return (
         <>
-            <div
-                className={`fixed z-50 bottom-4 right-4 bg-white rounded-lg shadow-lg p-6 transition-all duration-300 ease-in-out transform ${
-                    openContacts ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
-                } ${isVisible ? 'visible' : 'invisible'}`}
-                style={{
-                    width: 'min(80vw, 600px)',
-                    height: 'min(75vh, 550px)',
-                    overflowY: 'auto',
-                    transformOrigin: 'bottom right'
-                }}
-            >
-                <style jsx>{`
-                    div::-webkit-scrollbar {
-                        width: 8px;
-                    }
-                    div::-webkit-scrollbar-track {
-                        background: #f1f1f1;
-                        border-radius: 10px;
-                    }
-                    div::-webkit-scrollbar-thumb {
-                        background: #888;
-                        border-radius: 10px;
-                    }
-                    div::-webkit-scrollbar-thumb:hover {
-                        background: #555;
-                    }
-                `}</style>
-                <button
-                    onClick={() => setOpenContacts(false)}
-                    className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl"
-                >
-                    ×
-                </button>
-                {showBooking ? (
-                    // Render booking component
-                    <div className="h-full flex flex-col">
-                        <h3 className="text-2xl cute font-semibold mb-6 text-center">Book a Consultation</h3>
-                        <div className="flex-grow flex flex-col items-center justify-start overflow-y-auto">
-                            <Calendar />
-                        </div>
-                        <button
-                            onClick={() => setShowBooking(false)}
-                            className="mt-4 text-primary hover:text-primary-dark"
-                        >
-                            Back to Questions
-                        </button>
-                    </div>
-                ) : showSelected ? (
-                    // Render questions for selected options
-                    <div className="h-full flex flex-col">
-                        <h3 className="text-2xl cute font-semibold mb-6 text-center">{`Help Us Know More About Your ${selectedOptions[currentOptionIndex]}`}</h3>
-                        {questions[selectedOptions[currentOptionIndex]] && (
-                            <AnimatePresence initial={false} custom={direction}>
-                                <motion.div
-                                    key={currentOptionIndex}
-                                    custom={direction}
-                                    variants={slideVariants}
-                                    initial="enter"
-                                    animate="center"
-                                    exit="exit"
-                                    transition={{
-                                        x: { type: "spring", stiffness: 300, damping: 30 },
-                                        opacity: { duration: 0.2 }
-                                    }}
-                                    className="flex-grow flex flex-col items-center justify-center"
-                                >
-                                    <p className="font-semibold mb-4 text-center">{questions[selectedOptions[currentOptionIndex]][currentQuestionIndex].question}</p>
-                                    <div className="flex flex-wrap justify-center gap-2">
-                                        {questions[selectedOptions[currentOptionIndex]][currentQuestionIndex].options.map((option, optionIndex) => (
-                                            <motion.button
-                                                key={optionIndex}
-                                                onClick={() => handleAnswer(questions[selectedOptions[currentOptionIndex]][currentQuestionIndex].question, option)}
-                                                className={`px-3 py-1 rounded-full text-sm ${
-                                                    answers[selectedOptions[currentOptionIndex]]?.[questions[selectedOptions[currentOptionIndex]][currentQuestionIndex].question] === option
-                                                        ? 'bg-primary text-white'
-                                                        : 'bg-gray-200 hover:bg-gray-300'
-                                                }`}
-                                                whileHover={{ scale: 1.05 }}
-                                                whileTap={{ scale: 0.95 }}
-                                            >
-                                                {option}
-                                            </motion.button>
-                                        ))}
-                                    </div>
-                                </motion.div>
-                            </AnimatePresence>
-                        )}
-                        <div className="flex justify-between mt-6">
-                            <button
-                                onClick={handleBack}
-                                className="fixed bottom-4 left-4 w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white hover:bg-primary-dark transition-colors duration-300"
-                                disabled={isTransitioning}
-                            >
-                                <FaArrowLeft />
-                            </button>
-                        </div>
-                    </div>
-                ) : (
-                    // Render initial options selection
-                    <div className="h-full flex flex-col">
-                        <h3 className="text-2xl cute font-semibold mb-6 text-center">Please select the service you need</h3>
-                        <div className="flex-grow flex items-center justify-center">
-                            <div className="flex flex-wrap justify-center gap-3">
-                                {options.map((option, index) => (
-                                    <motion.span
-                                        key={index}
-                                        className={`cursor-pointer px-4 py-2 rounded-full inline-block text-sm transition-colors duration-300 ${
-                                            selectedOptions.includes(option) 
-                                                ? 'bg-primary text-white' 
-                                                : 'bg-gray-200 hover:bg-gray-300'
-                                        }`}
-                                        onClick={() => toggleOption(option)}
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                    >
-                                        {option}
-                                    </motion.span>
-                                ))}
+            {!openContacts ?
+                <>
+                    {!reception ? 
+                        <div onClick={() => reception ? setReception(false) : setReception(true)} className="flex flex-col z-[999] fixed bottom-8 right-8 justify-end grow md:grow-0  items-center">
+                            <ArrowBigDown className=' w-10 h-10 drop-shadow-lg font-manrope text-primary animate-bounce'/>
+                            <div className="border-2 border-black mr-4 md:mr-0 rounded-full px-4 py-2 flex bg-white items-center space-x-2">
+                            <span className="text-center whitespace-nowrap">Contact Us</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                            </svg>
+                            </div>
+                        </div> :
+                        <div className='p-8 fixed z-[999] bottom-8 rounded-xl right-8 w-[300px] sm:w-[400px] bg-white/30 backdrop-filter backdrop-blur-sm border border-white/40 gap-3 shadow-lg flex flex-col justify-around items-center'>
+                            <div className='relative w-full'>
+                                <BsDashCircle onClick={() => reception ? setReception(false) : setReception(true)} className='absolute text-xl right-0'/>
+                            </div>
+                            <div className='cute text-xl font-medium'>Let’s talk about your project</div>
+                            <div className='aspect-square rounded-full overflow-hidden w-24 relative'>
+                                <Image
+                                    fill
+                                    src={'/dev.jpg'}
+                                    alt='developer'
+                                    className=' scale-150'
+                                />
+                            </div>
+                            <div className='text-base font-[500]'>
+                                <div className='w-full text-center'>Kelvin Mburu</div>
+                                <div className='text-[10px] leading-4 font-[450]'>Chief UI/UX Designer</div>
+                            </div>
+                            <div className='mx-4'>
+                                <div onClick={() => openContacts ? setOpenContacts(false) : setOpenContacts(true)} className='w-full rounded-lg font-[480] bg-green-400 text-center pt-2 pb-3 text-base'>Let’s talk</div>
+                                <div className='text-green-400 text-base text-center pt-3 '>livebiashara@outlook.com</div>
                             </div>
                         </div>
-                        <div className="flex justify-between mt-6">
+                    }
+                </> :
+                <div
+                    className={`fixed z-[999] bottom-4 right-4 bg-white/30 backdrop-filter backdrop-blur-sm border border-white/40 rounded-lg shadow-lg p-6 transition-all duration-300 ease-in-out transform ${
+                        openContacts ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
+                    } ${isVisible ? 'visible' : 'invisible'}`}
+                    style={{
+                        width: 'min(80vw, 600px)',
+                        height: 'min(75vh, 550px)',
+                        overflowY: 'auto',
+                        transformOrigin: 'bottom right'
+                    }}
+                >
+                    <style jsx>{`
+                        div::-webkit-scrollbar {
+                            width: 8px;
+                        }
+                        div::-webkit-scrollbar-track {
+                            background: #f1f1f1;
+                            border-radius: 10px;
+                        }
+                        div::-webkit-scrollbar-thumb {
+                            background: #888;
+                            border-radius: 10px;
+                        }
+                        div::-webkit-scrollbar-thumb:hover {
+                            background: #555;
+                        }
+                    `}</style>
+                    <button
+                        onClick={() => setOpenContacts(false)}
+                        className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl"
+                    >
+                        ×
+                    </button>
+                    {showBooking ? (
+                        // Render booking component
+                        <div className="h-full flex flex-col">
+                            <h3 className="text-2xl cute font-semibold mb-6 text-center">Book a Consultation</h3>
+                            <div className="flex-grow flex flex-col items-center justify-start overflow-y-auto">
+                                <Calendar />
+                            </div>
                             <button
-                                onClick={() => setOpenContacts(false)}
-                                className="fixed bottom-4 left-4 w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white hover:bg-primary-dark transition-colors duration-300"
+                                onClick={() => setShowBooking(false)}
+                                className="mt-4 text-primary hover:text-primary-dark"
                             >
-                                <FaArrowLeft />
-                            </button>
-                            <button
-                                onClick={handleOkay}
-                                className="fixed bottom-4 right-4 w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white hover:bg-primary-dark transition-colors duration-300"
-                                disabled={selectedOptions.length === 0}
-                            >
-                                <FaArrowRight />
+                                Back to Questions
                             </button>
                         </div>
-                    </div>
-                )}
-            </div>
+                    ) : showSelected ? (
+                        // Render questions for selected options
+                        <div className="h-full flex flex-col">
+                            <h3 className="text-2xl cute font-semibold mb-6 text-center">{`Help Us Know More About Your ${selectedOptions[currentOptionIndex]}`}</h3>
+                            {questions[selectedOptions[currentOptionIndex]] && (
+                                <AnimatePresence initial={false} custom={direction}>
+                                    <motion.div
+                                        key={currentOptionIndex}
+                                        custom={direction}
+                                        variants={slideVariants}
+                                        initial="enter"
+                                        animate="center"
+                                        exit="exit"
+                                        transition={{
+                                            x: { type: "spring", stiffness: 300, damping: 30 },
+                                            opacity: { duration: 0.2 }
+                                        }}
+                                        className="flex-grow flex flex-col items-center justify-center"
+                                    >
+                                        <p className="font-semibold mb-4 text-center">{questions[selectedOptions[currentOptionIndex]][currentQuestionIndex].question}</p>
+                                        <div className="flex flex-wrap justify-center gap-2">
+                                            {questions[selectedOptions[currentOptionIndex]][currentQuestionIndex].options.map((option, optionIndex) => (
+                                                <motion.button
+                                                    key={optionIndex}
+                                                    onClick={() => handleAnswer(questions[selectedOptions[currentOptionIndex]][currentQuestionIndex].question, option)}
+                                                    className={`px-3 py-1 rounded-full text-sm ${
+                                                        answers[selectedOptions[currentOptionIndex]]?.[questions[selectedOptions[currentOptionIndex]][currentQuestionIndex].question] === option
+                                                            ? 'bg-primary text-white'
+                                                            : 'bg-gray-200 hover:bg-gray-300'
+                                                    }`}
+                                                    whileHover={{ scale: 1.05 }}
+                                                    whileTap={{ scale: 0.95 }}
+                                                >
+                                                    {option}
+                                                </motion.button>
+                                            ))}
+                                        </div>
+                                    </motion.div>
+                                </AnimatePresence>
+                            )}
+                            <div className="flex justify-between mt-6">
+                                <button
+                                    onClick={handleBack}
+                                    className="fixed bottom-4 left-4 w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white hover:bg-primary-dark transition-colors duration-300"
+                                    disabled={isTransitioning}
+                                >
+                                    <FaArrowLeft />
+                                </button>
+                            </div>
+                        </div>
+                    ) : (
+                        // Render initial options selection
+                        <div className="h-full flex flex-col">
+                            <h3 className="text-2xl cute font-semibold mb-6 text-center">Please select the service you need</h3>
+                            <div className="flex-grow flex items-center justify-center">
+                                <div className="flex flex-wrap justify-center gap-3">
+                                    {options.map((option, index) => (
+                                        <motion.span
+                                            key={index}
+                                            className={`cursor-pointer px-4 py-2 rounded-full inline-block text-sm transition-colors duration-300 ${
+                                                selectedOptions.includes(option) 
+                                                    ? 'bg-primary text-white' 
+                                                    : 'bg-gray-200 hover:bg-gray-300'
+                                            }`}
+                                            onClick={() => toggleOption(option)}
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
+                                        >
+                                            {option}
+                                        </motion.span>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="flex justify-between mt-6">
+                                <button
+                                    onClick={() => setOpenContacts(false)}
+                                    className="fixed bottom-4 left-4 w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white hover:bg-primary-dark transition-colors duration-300"
+                                >
+                                    <FaArrowLeft />
+                                </button>
+                                <button
+                                    onClick={handleOkay}
+                                    className="fixed bottom-4 right-4 w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white hover:bg-primary-dark transition-colors duration-300"
+                                    disabled={selectedOptions.length === 0}
+                                >
+                                    <FaArrowRight />
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            }
         </>
     );
 };

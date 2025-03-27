@@ -8,6 +8,10 @@ module.exports = {
       colors: {
         primary: '#db532a',
       },
+      fontFamily: {
+        'humane': ['Humane', 'sans-serif'],
+        'caveat': ['Caveat', 'cursive'],
+      },
     },
   },
   plugins: [],

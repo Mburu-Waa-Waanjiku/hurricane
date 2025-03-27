@@ -280,7 +280,7 @@ const ContactInfo = () => {
                             </svg>
                             </div>
                         </div> :
-                        <div className='p-8 fixed z-[999] bottom-8 rounded-xl right-8 w-[300px] sm:w-[400px] bg-white/30 backdrop-filter backdrop-blur-sm border border-white/40 gap-3 shadow-lg flex flex-col justify-around items-center'>
+                        <div className='p-8 fixed z-[999] bottom-8 rounded-xl right-8 w-[300px] sm:w-[400px] bg-white/50 backdrop-filter backdrop-blur-sm border border-white/40 gap-3 shadow-lg flex flex-col justify-around items-center'>
                             <div className='relative w-full'>
                                 <BsDashCircle onClick={() => reception ? setReception(false) : setReception(true)} className='absolute text-xl right-0'/>
                             </div>

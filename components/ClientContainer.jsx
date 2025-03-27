@@ -42,7 +42,7 @@ function ClientContainer() {
   
   // Services data with actual icon components
   const services = [
-    { name: "UI/UX Design", icon: Palette },
+    { name: "UI/UX Design", icon: Palette, link:'/get-a-website-from-the-best-web-designers-in-keny-nairobi' },
     { name: "Website Redesign", icon: RefreshCcw },
     { name: "Business Websites", icon: Building2 },
     { name: "Corporate Websites", icon: Building },

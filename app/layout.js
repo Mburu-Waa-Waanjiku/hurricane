@@ -2,6 +2,7 @@ import Header from '../components/Header';
 import ChatBox from '../components/ChatBox';
 import { StateProvider } from '../utils/StateContext';
 import '../styles/globals.css';
+import ContactInfo from '@/components/ContactInfo';
 
 export default function RootLayout({ children }) {
   return (
@@ -11,9 +12,9 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <StateProvider>
-          <Header />
           {children}
           <ChatBox />
+          <ContactInfo/>
         </StateProvider>
       </body>
     </html>

@@ -8,11 +8,15 @@ import Calendar from '../components/Calendar';
 import Image from 'next/image';
 import { BsDashCircle } from "react-icons/bs";
 import { ArrowBigDown } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 
 // ContactInfo component for handling user service selection and questionnaire
 const ContactInfo = () => {
     // State management using context
     const { openContacts, setOpenContacts } = useStateContext();
+    const pathname = usePathname()
+    const isActive = pathname === "/"
+  
 
     // Local state management
     const [selectedOptions, setSelectedOptions] = useState([]);
@@ -342,15 +346,19 @@ const ContactInfo = () => {
             {!openContacts ?
                 <>
                     {!reception ? 
-                        <div onClick={() => reception ? setReception(false) : setReception(true)} className="flex flex-col z-[999] fixed bottom-8 right-8 justify-end grow md:grow-0  items-center">
-                            <ArrowBigDown className=' w-10 h-10 drop-shadow-lg font-manrope text-primary animate-bounce'/>
+                        <>
+                            {isActive &&
+                                <div onClick={() => reception ? setReception(false) : setReception(true)} className="flex flex-col z-[999] fixed bottom-8 right-8 justify-end grow md:grow-0  items-center">
+                                    <ArrowBigDown className=' w-10 h-10 drop-shadow-lg font-manrope text-primary animate-bounce'/>
                             <div className="border-2 border-black mr-4 md:mr-0 rounded-full px-4 py-2 flex bg-white items-center space-x-2">
                             <span className="text-center whitespace-nowrap">Contact Us</span>
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                             </svg>
                             </div>
-                        </div> :
+                            </div>
+                            }
+                        </>:
                         <div className='p-8 text-white fixed z-[999] bottom-8 rounded-xl right-8 w-[300px] sm:w-[400px] bg-white/30 backdrop-filter backdrop-blur-sm border border-white/40 gap-3 shadow-lg flex flex-col justify-around items-center'>
                             <div className='relative w-full'>
                                 <BsDashCircle onClick={() => reception ? setReception(false) : setReception(true)} className='absolute text-xl right-0'/>
@@ -454,12 +462,12 @@ const ContactInfo = () => {
                                 </div>
                             </div>
                             <div className="flex justify-between mt-4">
-                                <button
-                                    onClick={() => setShowBooking(false)}
+                            <button
+                                onClick={() => setShowBooking(false)}
                                     className="text-primary hover:text-primary-dark"
-                                >
-                                    Back to Questions
-                                </button>
+                            >
+                                Back to Questions
+                            </button>
                                 <button
                                     onClick={sendToWhatsApp}
                                     className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded flex items-center"

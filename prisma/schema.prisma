@@ -1,0 +1,783 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  SHOP_ADMIN
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+// Subscription Tiers Enum
+enum SubscriptionTier {
+  PAY_AS_YOU_GO
+  MINI
+  DUPLEX
+}
+
+// Subscription Status Enum
+enum SubscriptionStatus {
+  ACTIVE
+  INACTIVE
+  EXPIRED
+  SUSPENDED
+}
+
+enum LocationType {
+  COUNTRY
+  PROVINCE
+  COUNTY
+  CITY
+  TOWN
+}
+
+model ReserveSeat {
+  id            String    @id @default(cuid())
+  shopName      String
+  county        String?
+  town          String?
+  location      String?
+  categories    String?
+  plan          String?
+  itemCount     Int?
+  shopLink      String
+  whatsapp      String
+  email         String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@map("reserve_seats")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  password      String?    // Added password field
+  emailVerified DateTime?
+  image         String?
+  role          Role      @default(USER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Shop admin specific fields
+  shopId        String?   // Only populated for shop admins
+  shopName      String?
+  shopLogo      String?
+  isShopActive  Boolean   @default(false)
+
+  // Admin specific fields
+  adminLevel    Int?      // For different admin permission levels
+  lastLogin     DateTime?
+
+  // Common fields
+  phoneNumber   String?   @unique
+  address       String?
+  city          String?
+  country       String?
+  isActive      Boolean   @default(true)
+  isBanned      Boolean   @default(false)
+  banReason     String?
+
+  // Relations
+  shop          Shop?     @relation("ShopAdmin")
+  orders        Order[]
+  sessions      Session[]
+  follows       UserFollow[]
+  cart          Cart?
+  pushSubscriptions PushSubscription[]
+
+  @@map("users")
+}
+
+model Shop {
+  id                    String    @id @default(cuid())
+  slug                  String    @unique
+  name                  String
+  shopType              String?
+  category              String[]
+  description           String?
+  logo                  String?
+  address               String?
+  city                  String?
+  country               String?
+  phoneNumber           String?
+  whatsapp              String?
+  email                 String?
+  folderId              String?
+  extrasFolderId        String?
+  isActive              Boolean   @default(false)
+  approvedAt            DateTime?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  // Location
+  latitude              Float?
+  longitude            Float?
+  googleMapsLink       String?
+  isLocationVerified   Boolean   @default(false)
+
+  // Social links
+  facebook             String?
+  instagram            String?
+  twitter              String?
+  tiktok               String?
+  website              String?
+
+  // Business documentation
+  businessCertificate  String?
+  isCertificateVerified Boolean  @default(false)
+  identificationDocs   String?
+  isIdVerified        Boolean    @default(false)
+  verifiedHandle      String?
+
+  // Payment methods and verification
+  isTill              Boolean    @default(false)
+  isPayBill           Boolean    @default(false)
+  isAccountNumber     Boolean    @default(false)
+  tillNumber          String?
+  isTillVerified      String     @default("pending")  // "pending", "verified", "rejected"
+  paybillNumber       String?
+  isPayBillVerified   String     @default("pending")  // "pending", "verified", "rejected"
+  accountNumber       String?
+  isAccountVerified   String     @default("pending")  // "pending", "verified", "rejected"
+
+  // Theme settings
+  selectedFont        String     @default("system-ui")
+  primaryColor        String     @default("#000000")
+  secondaryColor      String     @default("#FFC107")
+  accentColor         String?
+  selectedUI          String     @default("ui1")
+
+  // Contact verification
+  isWhatsappVerified  Boolean    @default(false)
+  isPhoneVerified     Boolean    @default(false)
+
+  // Relations
+  admin               User       @relation("ShopAdmin", fields: [adminId], references: [id], onDelete: Cascade)
+  adminId             String     @unique
+  products            Product[]
+  orders              Order[]
+  banners             Banner[]
+  userFollows         UserFollow[]
+  dailyVisits         ShopVisit[]
+  subscription        Subscription?
+  dealsOnFeeds        DealsOnFeeds[]
+  shopStatus          ShopStatus[]
+  shopRatings         ShopRating[]
+  metrics             ShopMetrics?
+  statuses            Status[]
+  stories             Story[]
+  account             ShopAccount?
+
+  // Analytics
+  shopPhotos          String[]
+  totalFollowers      Int       @default(0)
+  totalOrdersSold     Int       @default(0)
+  totalRevenue        Float     @default(0)
+
+  // Categories
+  categories   ShopCategory[]
+
+  // Shop Policies
+  returnPolicy        String?
+  shippingInfo        String?
+
+  // Add these new fields and relations
+  location      Location?  @relation("ShopLocation", fields: [locationId], references: [id])
+  locationId    String?
+  road          Road?     @relation("ShopRoad", fields: [roadId], references: [id])
+  roadId        String?
+  building      Building? @relation("ShopBuilding", fields: [buildingId], references: [id])
+  buildingId    String?
+
+  @@map("shops")
+  @@index([createdAt])
+  @@index([isActive])
+  @@index([locationId])
+  @@index([roadId])
+  @@index([buildingId])
+}
+
+// User Following Shop Model
+model UserFollow {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  shop      Shop     @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  shopId    String
+  followedAt DateTime @default(now())
+
+  @@unique([userId, shopId])
+  @@map("user_follows")
+  @@index([userId])
+  @@index([shopId])
+}
+
+// Daily Shop Visits Tracking
+model ShopVisit {
+  id          String   @id @default(cuid())
+  shop        Shop     @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  shopId      String
+  visitDate   DateTime
+  visitsCount Int      @default(1)
+
+  @@unique([shopId, visitDate])
+  @@map("shop_visits")
+  @@index([shopId, visitDate])
+}
+
+model DealsOnFeeds {
+  id          String    @id @default(cuid())
+  isPicture   Boolean   @default(true)
+  isVideo     Boolean   @default(false)
+  mediaUrl    String
+  title       String
+  description String
+  shop        Shop      @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  shopId      String
+  expiresAt   DateTime
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("deals_on_feeds")
+}
+
+model ShopStatus {
+  id          String    @id @default(cuid())
+  isPicture   Boolean   @default(true)
+  isVideo     Boolean   @default(false)
+  mediaUrl    String
+  caption     String?
+  views       Int       @default(0)
+  shop        Shop      @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  shopId      String
+  expiresAt   DateTime  // Status expires after 24 hours
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("shop_status")
+}
+
+model ShopRating {
+  id          String    @id @default(cuid())
+  metrics     Json      // Store ratings for each metric
+  comment     String?
+  shop        Shop      @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  shopId      String
+  userId      String    // ID of user who left rating
+  isVerified  Boolean   @default(false) // Whether user actually purchased from shop
+  order       Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId     String    @unique
+  orderItems  OrderItemRating[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("shop_ratings")
+}
+
+model Banner {
+  id          String   @id @default(cuid())
+  shopId      String
+  title       String
+  description String?
+  pictureUrl  String?
+  videoUrl    String?
+  isPicture   Boolean  @default(false)
+  isVideo     Boolean  @default(false)
+  button      String   @default("all-products")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  shop        Shop     @relation(fields: [shopId], references: [id], onDelete: Cascade)
+
+  @@index([shopId])
+}
+
+model Product {
+  id            String    @id @default(cuid())
+  name          String
+  description   String
+  category      String
+  subCategory   String?
+
+  // Base price and modifiers
+  priceBase     Float
+  priceModifiers Json     // Store price modifiers as JSON
+
+  // Variants and specifications
+  availableVariants Json  // Store variants as JSON
+  specifications   Json   // Store specifications as JSON
+  filters          Json   // Store filters as JSON
+
+  // Images with variants
+  images          Json  // Image objects with variants
+
+  // Inventory tracking
+  inventory       Json    // Store inventory levels by variant
+
+  // Ratings and reviews
+  rating          Float?  @default(0)
+  reviews         Json[]  // Store reviews as JSON
+
+  // Discounts and promotions
+  discounts       Json?   // Store discount information
+
+  // Shipping information
+  shipping        Json    // Store shipping details
+  returnPolicy    String?
+
+  // Category-specific details
+  categorySpecificAttributes Json?
+
+  // Status flags
+  isActive        Boolean @default(true)
+  isOnOffer       Boolean @default(false)
+  isEditorsChoice Boolean @default(false)
+
+  // Timestamps
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  shop            Shop    @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  shopId          String
+  orderItems      OrderItem[]
+  impression      ProductImpression?
+  cartItems       CartItem[]
+
+  // Rating Metrics
+  ratingMetrics   Json?     // Store average ratings for each metric
+
+  // Add these fields
+  shopCategory   ShopCategory? @relation(fields: [shopCategoryId], references: [id])
+  shopCategoryId String       // Note the ? making it optional
+
+  @@map("products")
+  @@index([shopId, isActive])
+  @@index([category])
+  @@index([createdAt])
+  @@index([shopCategoryId])
+}
+
+model ProductImpression {
+  id          String    @id @default(cuid())
+  pageVisits  Int       @default(0)
+  likes       Int       @default(0)
+  views       Int       @default(0)
+  clickCount  Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relations
+  product     Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId   String    @unique
+
+  @@map("product_impressions")
+  @@index([createdAt])
+}
+
+model Cart {
+  id          String      @id @default(cuid())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  // Relations
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String      @unique
+  items       CartItem[]
+
+  @@map("carts")
+}
+
+model CartItem {
+  id          String      @id @default(cuid())
+  quantity    Int
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  // Relations
+  cart        Cart        @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  cartId      String
+  product     Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId   String
+
+  @@map("cart_items")
+}
+
+model Order {
+  id              String      @id @default(cuid())
+  status          OrderStatus @default(PENDING)
+  totalAmount     Float
+  shippingFee     Float
+  
+  // Customer details
+  customerName    String
+  phoneNumber     String
+  preferredContact String     // whatsapp or call
+  
+  // Delivery details
+  deliveryArea    String      // Selected area
+  isDoorDelivery  Boolean     @default(false)
+  courierName     String      // Name of courier/agent/sacco
+  courierType     String      // agent, sacco, or doorstep
+  pickupLocation  String?     // For agent pickups
+  pickupMainArea  String?     // Main area for agent pickups
+  deliveryCity    String?     // For doorstep delivery
+  
+  city            String?
+  country         String?
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  // Relations
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId          String
+  shop            Shop        @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  shopId          String
+  orderItems      OrderItem[]
+  transaction     Transaction?
+
+  // Rating
+  rating          ShopRating?
+
+  @@map("orders")
+  @@index([shopId, status, createdAt])
+  @@index([createdAt])
+}
+
+model OrderItem {
+  id          String    @id @default(cuid())
+  quantity    Int
+  unitPrice   Float
+  totalPrice  Float
+  variant     Json      // Store size and color
+  productName String    // Store product name for reference
+
+  // Relations
+  order       Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId     String
+  product     Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  productId   String
+
+  // Rating
+  rating      OrderItemRating[]
+
+  @@map("order_items")
+}
+
+model Transaction {
+  id            String    @id @default(cuid())
+  amount        Decimal   // Changed from Int to Decimal for precise amounts
+  phoneNumber   String
+  code          String
+  merchantId    String
+  paymentMethod String    @default("MPESA")
+  status        String
+  reference     String    @unique
+  metadata      Json?     // Added to store additional callback data
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Optional relations - made nullable since they might not be available during callback
+  shopId        String?
+  order         Order?    @relation(fields: [orderId], references: [id])
+  orderId       String?   @unique
+
+  // Shop transaction relation
+  shopTransaction ShopTransaction?
+
+  @@map("transactions")
+  @@index([shopId, createdAt])
+  @@index([status])
+  @@index([merchantId]) // Added index for merchantId lookups
+}
+
+model OTP {
+  id        String   @id @default(cuid())
+  email     String
+  otp       String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@map("otps")
+}
+
+model Session {
+  id          String    @id
+  token       String?
+  userId      String?
+  isGuest     Boolean   @default(true)
+  carts       Json      @default("{}")
+  createdAt   DateTime  @default(now())
+  lastActive  DateTime  @updatedAt
+  expiresAt   DateTime?
+  user        User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model ShopMetrics {
+  id                  String   @id @default(cuid())
+  shopId              String   @unique
+  shop                Shop     @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  productImpressions  Int      @default(0)
+  productLikes        Int      @default(0)
+  averageOrderValue   Float    @default(0)
+  dailyVisits        Int[]    // Array of last 30 days
+  dailyRevenue       Float[]   // Array of last 30 days
+  updatedAt          DateTime  @updatedAt
+
+  @@index([shopId])
+}
+
+model Status {
+  id          String    @id @default(cuid())
+  shop        Shop      @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  shopId      String
+  mediaUrl    String
+  description String?
+  isPicture   Boolean   @default(true)
+  isVideo     Boolean   @default(false)
+  views       Int       @default(0)
+  createdAt   DateTime  @default(now())
+  expiresAt   DateTime
+  story       Story?    @relation(fields: [storyId], references: [id], onDelete: SetNull)
+  storyId     String?
+
+  @@map("statuses")
+  @@index([shopId])
+  @@index([expiresAt])
+}
+
+model Story {
+  id          String    @id @default(cuid())
+  shop        Shop      @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  shopId      String
+  name        String
+  description String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  statuses    Status[]
+
+  @@map("stories")
+  @@index([shopId])
+}
+
+model Subscription {
+  id              String          @id @default(cuid())
+  shop            Shop            @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  shopId          String          @unique
+  plan            SubscriptionPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+  planId          String
+
+  // Subscription-specific details (overrides defaults in SubscriptionPlan)
+  extraProducts   Int
+  pricePerProduct Float
+  duration        Int             // Duration in days (e.g., 30, 90, 365)
+  discount        Float           @default(0)
+  description     String?
+
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  @@map("subscriptions")
+  @@index([shopId])
+  @@index([planId])
+}
+
+model SubscriptionPlan {
+  id              String    @id @default(cuid())
+  planName        String    @unique // Unique name for admin purposes
+  extraProducts   Int       // Default extra product limit
+  pricePerProduct Float     // Default price per product
+  duration        Int       // Default duration in days
+  discount        Float     @default(0) // Default discount percentage
+  description     String?
+  subscriptions   Subscription[]
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@map("subscription_plans")
+}
+
+model PricingTier {
+  id                 String   @id @default(cuid())
+  min_value          Int
+  max_value          Int
+  cumulative_charge  Int
+  created_at         DateTime @default(now())
+  updated_at         DateTime @updatedAt
+
+  @@index([min_value, max_value])
+}
+
+model ShopAccount {
+  id                 String            @id @default(cuid())
+  shop               Shop              @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  shopId             String            @unique @map("shop_id")
+  initialBalance     Decimal           @default(0)
+  currentBalance     Decimal           @default(0)
+  transactions       ShopTransaction[] @relation("AccountTransactions")
+
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+
+  @@map("shop_accounts")
+}
+
+model ShopTransaction {
+  id                 String            @id @default(cuid())
+  account            ShopAccount       @relation("AccountTransactions", fields: [accountId], references: [id], onDelete: Cascade)
+  accountId          String
+  transaction        Transaction?      @relation(fields: [transactionId], references: [id])
+  transactionId      String?          @unique
+
+  // Transaction details
+  orderAmount        Decimal           // Original order/transaction amount
+  cumulativeCharge   Decimal           // Charge applied based on pricing tier
+  initialBalance     Decimal           // Account balance before this transaction
+  finalBalance       Decimal           // Account balance after this transaction
+
+  // Additional metadata
+  transactionType    TransactionType
+  description        String?
+  createdAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+
+  // Optional reference to specific order or service if applicable
+  orderId            String?
+
+  @@map("shop_transactions")
+  @@index([accountId, createdAt])
+  @@index([transactionType])
+  @@index([createdAt])
+  @@index([orderId])
+}
+
+// Enum to categorize transaction types
+enum TransactionType {
+  DEDUCTION
+  RECHARGE
+  SUBSCRIPTION
+  CREDIT
+  REFUND
+  ADJUSTMENT
+}
+
+model PushSubscription {
+  id        String   @id @default(cuid())
+  endpoint  String   @unique
+  p256dh    String
+  auth      String
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("push_subscriptions")
+}
+
+model OrderItemRating {
+  id            String      @id @default(cuid())
+  rating        Int         // Rating from 1-5
+  comment       String?
+  shopRating    ShopRating  @relation(fields: [shopRatingId], references: [id], onDelete: Cascade)
+  shopRatingId  String
+  orderItem     OrderItem   @relation(fields: [orderItemId], references: [id], onDelete: Cascade)
+  orderItemId   String
+
+  @@map("order_item_ratings")
+}
+
+// Add this new model
+model ShopCategory {
+  id          String    @id @default(cuid())
+  name        String
+  imageUrl    String
+  shop        Shop      @relation(fields: [shopId], references: [id], onDelete: Cascade)
+  shopId      String
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("shop_categories")
+  @@index([shopId])
+}
+
+model Location {
+  id            String     @id @default(cuid())
+  name          String     @unique
+  type          LocationType
+  latitude      Float?
+  longitude     Float?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  // Hierarchical relations
+  parent        Location?  @relation("LocationHierarchy", fields: [parentId], references: [id])
+  parentId      String?
+  children      Location[] @relation("LocationHierarchy")
+
+  // Other relations
+  buildings     Building[]
+  shops         Shop[]     @relation("ShopLocation")
+  roads         Road[]
+
+  @@map("locations")
+  @@index([parentId])
+  @@index([type])
+}
+
+model Road {
+  id            String     @id @default(cuid())
+  name          String     @unique
+  description   String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+
+  // Relations
+  locations     Location[]
+  buildings     Building[]
+  shops         Shop[]     @relation("ShopRoad")
+
+  @@map("roads")
+}
+
+model Building {
+  id            String    @id @default(cuid())
+  name          String    @unique
+  description   String?
+  latitude      Float?
+  longitude     Float?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  location      Location  @relation(fields: [locationId], references: [id])
+  locationId    String
+  road          Road?     @relation(fields: [roadId], references: [id])
+  roadId        String?
+  shops         Shop[]    @relation("ShopBuilding")
+
+  @@map("buildings")
+  @@index([locationId])
+  @@index([roadId])
+}

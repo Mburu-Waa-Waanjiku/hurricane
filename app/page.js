@@ -1,3 +1,4 @@
+import ContactInfo from '../components/ContactInfo';
 import ClientContainer from '../components/ClientContainer';
 
 export const metadata = {
@@ -5,8 +6,9 @@ export const metadata = {
   description: 'At Hurricane Teck, we specialize in creating custom websites, developing native mobile apps, and providing innovative SaaS products. As a leading web design - development company and online marketing agency in Nairobi, Kenya, we help businesses grow with responsive web solutions, effective digital marketing strategies, and powerful software tools designed to enhance performance and drive success. Partner with us to elevate your online presence and achieve your business goals.',
   icons: {
     icon: '/h.png',
-  },
-  googleSiteVerification: 'ehyifMyuzZjrrJmMdqaTCAsoDerpHiSeejh92XkAQPI',
+    shortcut: '/h.png',
+    apple: '/h.png',
+  }
 };
 
 export function generateJsonLd() {
@@ -26,6 +28,7 @@ export default function Home() {
   return (
     <div className="flex flex-col p-0">
       <ClientContainer/>
+      <ContactInfo/>
     </div>
   );
 }

@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { useStateContext } from '@/utils/StateContext';
 import ContactInfo from './ContactInfo';
+import { useStateContext } from '../utils/StateContext';
 
 const Header = () => {
   const pathname = usePathname();
@@ -44,8 +44,8 @@ const Header = () => {
   return (
     <header 
       className={`
-        fixed top-0 left-0 right-0 bg-white z-20 text-black px-4 py-3 shadow-md transition-all duration-300
-        ${headerState === 'initial' ? '' : ' mx-4 md:mx-8 py-3 my-5 rounded-full'}
+        fixed top-0 left-0 right-0 bg-white z-[60] text-black px-4 py-3 shadow-md transition-all duration-300
+        ${headerState === 'initial' ? ' mx-1 my-1 rounded-lg' : ' mx-4 md:mx-8 py-3 my-5 rounded-full shadow-lg'}
       `}
     >
       <nav className="flex justify-center space-x-4">
@@ -69,7 +69,7 @@ const Header = () => {
                 { name: 'Explore', path: '/' },
               ].map(({ name, path }) => (
                 <Link
-                  key={path}
+                  key={name}
                   href={path}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`text-2xl font-bold ${isActive(path) ? 'text-primary' : 'text-black'}`}
@@ -80,7 +80,7 @@ const Header = () => {
             </div>
           </div>
           <div onClick={() => openContacts ? setOpenContacts(false) : setOpenContacts(true)} className="flex justify-end grow md:grow-0  items-center">
-            <div className="border-2 border-black mr-4 md:mr-0 rounded-full px-4 py-2 flex items-center space-x-2">
+            <div className={`border-2 border-black mr-4 md:mr-0 rounded-full px-4 py-2 flex items-center space-x-2 transition-all duration-300 ${headerState === 'rounded' ? 'bg-black text-white border-black' : ''}`}>
               <span className="text-center whitespace-nowrap">Contact Us</span>
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -100,7 +100,6 @@ const Header = () => {
           </div>
         </div>
       </nav>
-      <ContactInfo />
     </header>
   );
 };

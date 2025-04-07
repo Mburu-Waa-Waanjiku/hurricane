@@ -2,7 +2,6 @@ import Header from '../components/Header';
 import ChatBox from '../components/ChatBox';
 import { StateProvider } from '../utils/StateContext';
 import '../styles/globals.css';
-import ContactInfo from '@/components/ContactInfo';
 import { humane, caveat } from "./fonts"
 
 export default function RootLayout({ children }) {
@@ -16,7 +15,6 @@ export default function RootLayout({ children }) {
         <StateProvider>
           {children}
           <ChatBox />
-          <ContactInfo/>
         </StateProvider>
       </body>
     </html>

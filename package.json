@@ -9,9 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "@prisma/extension-accelerate": "^1.2.1",
+    "@prisma/extension-pulse": "^1.2.0",
     "@react-spring/three": "^9.7.5",
     "@react-three/drei": "^9.114.6",
     "@react-three/fiber": "^8.17.10",
+    "axios": "^1.8.4",
     "framer-motion": "^11.11.9",
     "lodash": "^4.17.21",
     "lucide-react": "^0.484.0",
@@ -24,6 +28,7 @@
     "react-time-picker": "^7.0.0"
   },
   "devDependencies": {
+    "@types/node": "22.14.0",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.1.4",

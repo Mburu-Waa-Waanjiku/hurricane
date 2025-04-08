@@ -54,7 +54,7 @@ export default function RentaStoreLanding({ setRegister }) {
       >
         <div className="absolute inset-0 !h-[150vh] -translate-y-[50vh] bg-gradient-to-b from-black/40 to-black/70 z-10"></div>
         <Image
-          src="/Z.jfif"
+          src="https://res.cloudinary.com/dddx5qpji/image/upload/v1744047347/Z_b2tp8l.jpg"
           alt="Background"
           fill
           priority

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useStateContext } from '@/utils/StateContext';
+import { useStateContext } from '../../../utils/StateContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Array of marketing services with their details

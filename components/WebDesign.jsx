@@ -185,12 +185,12 @@ const WebDesign = () => {
               quality={100}
             />
             {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-black/20"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white-40 to-white/10  dark:from-black/90 dark:"></div>
             {/* Slide content */}
             <div className="absolute inset-0 flex justify-start items-center md:translate-y-8">
               <div className={`w-3/4 md:w-2/3 px-4 md:px-12 lg:px-20 ${index === 6 && '-translate-y-10'}`}>
                 <h2 className="text-3xl md:text-4xl lg:text-4xl mb-4 text-primary font-bold">{slide.title}</h2>
-                <p className="text-white text-base md:text-lg lg:text-xl">{slide.content}</p>
+                <p className="dark:text-white font-medium dark:font-normal text-base md:text-lg lg:text-xl">{slide.content}</p>
               </div>
               {/* Contact button for slide 5 */}
               {index === 5 && (

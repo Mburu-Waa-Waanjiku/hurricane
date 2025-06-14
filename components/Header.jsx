@@ -37,7 +37,7 @@ const Header = ({ scrollState = 'initial' }) => {
     <>
       <header 
         className={`
-          fixed top-0 left-0 right-0 bg-white dark:bg-gray-900 z-[60] text-black dark:text-white px-4 py-3 shadow-md transition-all duration-300
+          fixed top-0 left-0 right-0 bg-white z-[60] text-black px-4 py-3 shadow-md transition-all duration-300
           ${headerStyleState === 'initial' ? ' mx-1 my-1 rounded-lg' : ' mx-4 md:mx-8 py-3 my-5 rounded-full shadow-lg'}
         `}
       >
@@ -54,7 +54,7 @@ const Header = ({ scrollState = 'initial' }) => {
           </div>
           <div className='flex items-center space-x-2'>
             <div onClick={toggleContacts} className="flex items-center cursor-pointer">
-              <div className={`border-2 border-black dark:border-white rounded-full px-3 py-1.5 flex items-center space-x-2 transition-all duration-300 ${headerStyleState === 'rounded' ? 'bg-black text-white dark:bg-white dark:text-black' : ' hover:bg-gray-100 dark:hover:bg-gray-800'}`}>
+              <div className={`border-2 border-black rounded-full px-3 py-1.5 flex items-center space-x-2 transition-all duration-300 ${headerStyleState === 'rounded' ? 'bg-black text-white dark:bg-white dark:text-black' : ' hover:bg-gray-100 dark:hover:bg-gray-800'}`}>
                 <span className="text-sm font-medium whitespace-nowrap">Contact Us</span>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                   <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -64,7 +64,7 @@ const Header = ({ scrollState = 'initial' }) => {
             <div className='md:hidden'>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className='text-black dark:text-white p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none'
+                className='text-black  p-1 rounded-md hover:bg-gray-100 focus:outline-none'
                 aria-label="Toggle mobile menu"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

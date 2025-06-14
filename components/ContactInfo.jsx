@@ -351,8 +351,8 @@ const ContactInfo = () => {
                                 <div onClick={() => reception ? setReception(false) : setReception(true)} className="flex flex-col z-[999] fixed bottom-8 right-8 justify-end grow md:grow-0  items-center">
                                     <ArrowBigDown className=' w-10 h-10 drop-shadow-lg font-manrope text-primary animate-bounce'/>
                             <div className="border-2 border-black mr-4 md:mr-0 rounded-full px-4 py-2 flex bg-white items-center space-x-2">
-                            <span className="text-center whitespace-nowrap">Contact Us</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <span className="text-center text-black whitespace-nowrap">Contact Us</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-black" viewBox="0 0 20 20" fill="currentColor">
                                 <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                             </svg>
                             </div>

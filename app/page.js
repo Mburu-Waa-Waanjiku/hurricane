@@ -1,5 +1,6 @@
 import ContactInfo from '../components/ContactInfo';
 import ClientContainer from '../components/ClientContainer';
+import { ThemeToggle } from '../components/ThemeToggle';
 
 export const metadata = {
   title: 'Professional Web Designers - Developers, Mobile App Developers, Online Marketing Experts & SaaS Providers in Nairobi, Kenya',
@@ -26,7 +27,10 @@ export function generateJsonLd() {
 
 export default function Home() {
   return (
-    <div className="flex flex-col p-0">
+    <div className="flex flex-col p-0 relative">
+      <div className="fixed top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
       <ClientContainer/>
       <ContactInfo/>
     </div>

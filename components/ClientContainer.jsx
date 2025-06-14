@@ -47,58 +47,58 @@ function ClientContainer() {
     {
       name: "UI/UX Design",
       icon: Palette,
-      link: "/services/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
+      link: "/services/web-design/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
     },
     {
       name: "Website Redesign",
       icon: RefreshCcw,
-      link: "/services/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
+      link: "/services/web-design/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
     },
     {
       name: "Business Websites",
       icon: Building2,
-      link: "/services/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
+      link: "/services/web-design/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
     },
     {
       name: "Corporate Websites",
       icon: Building,
-      link: "/services/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
+      link: "/services/web-design/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
     },
     {
       name: "Single Page Websites",
       icon: Globe,
-      link: "/services/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
+      link: "/services/web-design/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
     },
     {
       name: "Landing Pages",
       icon: PlaneLanding,
-      link: "/services/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
+      link: "/services/web-design/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
     },
     {
       name: "Online Courses",
       icon: GraduationCap,
-      link: "/services/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
+      link: "/services/web-design/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
     },
     { name: "Blogs", icon: FileText, link: "/services/get-a-website-from-the-best-web-designers-in-kenya-nairobi" },
     {
       name: "Membership Sites",
       icon: Users,
-      link: "/services/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
+      link: "/services/web-design/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
     },
     {
       name: "Rental E-commerce",
       icon: Store,
-      link: "/services/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
+      link: "/services/web-design/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
     },
     {
       name: "Custom E-commerce",
       icon: ShoppingCart,
-      link: "/services/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
+      link: "/services/web-design/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
     },
     {
       name: "Online/Digital Marketing",
       icon: BarChart3,
-      link: "/services/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
+      link: "/services/web-design/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
     },
     { name: "Social Media Management", icon: Share2, link: "/" },
     { name: "Branding", icon: Sparkles, link: "/" },
@@ -281,15 +281,15 @@ function ClientContainer() {
 
   return (
     <>
-      {popupVisible && <Popup onClose={() => setPopupVisible(false)} />}
+      {/* {popupVisible && <Popup onClose={() => setPopupVisible(false)} />} */}
       {/* First section - sticky at the top */}
-      <div className="sticky top-0 w-full h-screen bg-black z-10">
+      <div className="sticky top-0 w-full h-screen dark:bg-black z-10">
         {/* Background image with overlay */}
         <div className="absolute inset-0 w-full h-full">
-          <Image src="/dxcu.png" alt="Developer workspace" fill className="object-cover p-6 opacity-50" priority />
+          <Image src="/dxcu.png" alt="Developer workspace" fill className="object-cover dark:p-6 opacity-50" priority />
           {/* Dark overlay with matte finish */}
           <div
-            className="absolute inset-0 bg-black/50 backdrop-filter backdrop-blur-sm"
+            className="absolute inset-0 bg-white/50 dark:bg-black/50 backdrop-filter backdrop-blur-sm"
             style={{ mixBlendMode: "multiply" }}
           />
         </div>
@@ -342,19 +342,19 @@ function ClientContainer() {
         {/* Heading container */}
         <div className="absolute w-full h-full flex flex-col top-0 z-10 flex items-center justify-center px-4 pt-20 overflow-hidden">
           <h1
-            className={`font-humane font-bold tracking-wide text-white/60 text-center text-7xl sm:text-8xl lg:text-9xl leading-tight tracking-wide transition-all duration-1000 ${titleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
+            className={`font-humane font-bold tracking-wide text-black/70 dark:text-white/60 text-center text-7xl sm:text-8xl lg:text-9xl leading-tight tracking-wide transition-all duration-1000 ${titleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
           >
-            <span className="text-8xl sm:text-9xl lg:text-[9.5rem] text-white mr-2 inline-block animate-slide-in-left">
+            <span className="text-8xl sm:text-9xl lg:text-[9.5rem] text-black dark:text-white mr-2 inline-block animate-slide-in-left">
               WE
             </span>
             <span className="inline-block animate-slide-in-right">ARE NOT</span>
-            <span className="text-8xl sm:text-9xl lg:text-[9.5rem] text-white mr-2 inline-block animate-slide-in-left">
+            <span className="text-8xl sm:text-9xl lg:text-[9.5rem] text-black dark:text-white mr-2 inline-block animate-slide-in-left">
               JUST
             </span>
             <br />
             <span className="inline-block animate-slide-in-bottom">ANOTHER WEB & DEV</span>
             <br />
-            <span className="text-8xl sm:text-9xl lg:text-[9.5rem] text-white mr-2 inline-block animate-slide-in-top">
+            <span className="text-8xl sm:text-9xl lg:text-[9.5rem] text-black dark:text-white mr-2 inline-block animate-slide-in-top">
               COMPANY
             </span>
           </h1>
@@ -362,26 +362,26 @@ function ClientContainer() {
       </div>
 
       {/* Third section - Our Latest Solutions */}
-      <div id="third-section" className="relative w-full h-[80vh] bg-black z-30">
+      <div id="third-section" className="relative w-full h-[80vh] bg-white dark:bg-black z-30">
         {/* Background image with overlay */}
         <div className="absolute inset-0 w-full h-full">
           <Image src="/solutions-bg.jpg" alt="Solutions background" fill className="object-cover p-6 opacity-50" />
           {/* Dark overlay with matte finish */}
           <div
-            className="absolute inset-0 bg-black/60 backdrop-filter backdrop-blur-sm"
+            className="absolute inset-0 dark:bg-black/60 backdrop-filter backdrop-blur-sm"
             style={{ mixBlendMode: "multiply" }}
           />
         </div>
 
         {/* Sticky note - top left */}
         <div
-          className={`absolute scale-[0.9] sm:scale-100 lg:scale-110 top-8 left-8 z-20 w-40 h-40 rotate-6 shadow-lg p-4 flex items-center justify-center transform hover:rotate-3 transition-all duration-500 ${thirdSectionVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-20"}`}
+          className={`absolute scale-[0.9] sm:scale-100 lg:scale-110 top-8 left-8 bg-green-600/10 dark:bg-transparent border border-green-600/40 dark:border-none z-20 w-40 h-40 rotate-6 shadow-lg p-4 flex items-center justify-center transform hover:rotate-3 transition-all duration-500 ${thirdSectionVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-20"}`}
           style={{ fontFamily: "Caveat, cursive" }}
         >
-          <p className="text-green-200 text-2xl text-center font-[100] transform ">WE DO BETTER THAN THE BEST</p>
+          <p className="text-green-600 dark:text-green-200 text-2xl text-center font-[100] transform ">WE DO BETTER THAN THE BEST</p>
           {/* Arrow SVG pointing to header */}
           <svg
-            className="absolute -translate-x-8 -bottom-10 right-0 w-24 h-24 text-green-200 fill-current animate-bounce-slow"
+            className="absolute -translate-x-8 -bottom-10 right-0 w-24 h-24 text-green-600 dark:text-green-200 fill-current animate-bounce-slow"
             viewBox="0 0 100 100"
           >
             <path
@@ -395,13 +395,13 @@ function ClientContainer() {
 
         {/* Sticky note - bottom right */}
         <div
-          className={`absolute scale-[0.8] sm:scale-100 lg:scale-110 bottom-8 right-8 z-20 w-44 h-44 -rotate-6 shadow-lg p-4 flex items-center justify-center transform hover:-rotate-3 transition-all duration-500 ${thirdSectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
+          className={`absolute scale-[0.8] sm:scale-100 lg:scale-110 bottom-8 bg-purple-600/10 dark:bg-transparent border border-purple-600/40 dark:border-none dark:bg-transparent right-8 z-20 w-44 h-44 -rotate-6 shadow-lg p-4 flex items-center justify-center transform hover:-rotate-3 transition-all duration-500 ${thirdSectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
           style={{ fontFamily: "Caveat, cursive" }}
         >
-          <p className="text-purple-200 text-2xl text-center font-bold transform rotate-3">CUTTING-EDGE SOLUTIONS</p>
+          <p className="text-purple-600 dark:text-purple-200 text-2xl text-center font-bold transform rotate-3">CUTTING-EDGE SOLUTIONS</p>
           {/* Arrow SVG pointing to header */}
           <svg
-            className="absolute -top-16 -left-8 w-24 h-24 text-purple-200 fill-current animate-bounce-slow"
+            className="absolute -top-16 -left-8 w-24 h-24 text-purple-600 dark:text-purple-200 fill-current animate-bounce-slow"
             viewBox="0 0 100 100"
           >
             <path
@@ -416,13 +416,13 @@ function ClientContainer() {
         {/* Heading container */}
         <div className="absolute w-full h-full flex flex-col top-0 z-10 flex items-center justify-center px-4 pt-20 overflow-hidden">
           <h1
-            className={`font-humane font-bold tracking-wide text-white/60 text-center text-7xl sm:text-8xl lg:text-9xl leading-tight tracking-wide transition-all duration-1000 ${thirdSectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
+            className={`font-humane font-bold tracking-wide text-black/60 dark:text-white/60 text-center text-7xl sm:text-8xl lg:text-9xl leading-tight tracking-wide transition-all duration-1000 ${thirdSectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
           >
-            <span className="text-8xl sm:text-9xl lg:text-[9.5rem] text-white mr-2 inline-block animate-slide-in-left">
+            <span className="text-8xl sm:text-9xl lg:text-[9.5rem] text-black dark:text-white mr-2 inline-block animate-slide-in-left">
               OUR
             </span>
             <span className="inline-block animate-slide-in-right">LATEST</span>
-            <span className="text-8xl sm:text-9xl lg:text-[9.5rem] text-white mr-2 inline-block animate-slide-in-bottom">
+            <span className="text-8xl sm:text-9xl lg:text-[9.5rem] text-black dark:text-white mr-2 inline-block animate-slide-in-bottom">
               SOLUTIONS
             </span>
           </h1>
@@ -430,12 +430,12 @@ function ClientContainer() {
       </div>
 
       {/* Fourth section - TukoSite Showcase */}
-      <div id="fourth-section" className="relative w-full h-[140vh] bg-black z-40 overflow-hidden">
+      <div id="fourth-section" className="relative w-full h-[140vh] bg-white dark:bg-black z-40 overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0 w-full h-full">
           <Image src="/bg.jpg" alt="Background" fill className="object-cover opacity-40" />
           {/* Dark gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/10 to-white/10 dark:bg-gradient-to-r dark:from-black dark:via-black/80 dark:to-black/40 dark:bg-gradient-to-r dark:from-black dark:via-black/80 dark:to-black/40" />
         </div>
 
         {/* TukoSite image with skewed appearance */}
@@ -468,12 +468,12 @@ function ClientContainer() {
 
         {/* Overlaying card */}
         <div
-          className={`absolute left-10 rotate-5 sm:left-20 md:left-32 top-1/3 -translate-y-1/2 z-20 w-[300px] sm:w-[400px] bg-white/10 backdrop-filter backdrop-blur-md rounded-xl p-8 shadow-2xl border border-white/20 transform hover:scale-105 transition-all duration-1000 ${fourthSectionVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-20"}`}
+          className={`absolute left-10 rotate-5 sm:left-20 md:left-32 top-1/3 -translate-y-1/2 z-20 w-[300px] sm:w-[400px] bg-white/10 backdrop-filter backdrop-blur-md rounded-xl p-8 shadow-2xl border border-black/20 dark:border-white/20 transform hover:scale-105 transition-all duration-1000 ${fourthSectionVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-20"}`}
         >
           <div className="flex flex-col items-start">
             <h2 className="text-primary text-4xl sm:text-5xl font-bold mb-4 animate-slide-in-left">TukoSite</h2>
             <div className="w-20 h-1 bg-primary mb-6 animate-slide-in-right"></div>
-            <h3 className="text-white text-xl sm:text-2xl font-medium mb-4 animate-slide-in-left">Marketplace</h3>
+            <h3 className="dark:text-white text-xl sm:text-2xl font-medium mb-4 animate-slide-in-left">Marketplace</h3>
             <button className="bg-primary hover:bg-primary/80 text-white py-3 px-6 rounded-full font-medium transition-colors duration-300 flex items-center animate-slide-in-bottom">
               <Link href="https://www.tukosite.shop/" className="flex gap-3 items-center">
                 VISIT TUKOSITE
@@ -501,15 +501,15 @@ function ClientContainer() {
           className={`absolute bottom-20 left-0 right-0 z-30 px-8 sm:px-16 md:px-24 transition-all duration-1000 ${fourthSectionVisible ? "opacity-100 translate-y-4" : "opacity-0 translate-y-20"}`}
         >
           <div className="max-w-4xl mx-auto p-6 sm:p-8">
-            <h4 className="font-humane text-white text-4xl sm:text-5xl mb-4 animate-slide-in-left">TukoSite</h4>
+            <h4 className="font-humane dark:text-white text-4xl sm:text-5xl mb-4 animate-slide-in-left">TukoSite</h4>
             <div className="w-20 h-1 bg-primary mb-6 animate-slide-in-right"></div>
-            <p className="text-white/80 text-base sm:text-lg leading-relaxed font-light animate-slide-in-bottom">
-              <span className="text-white font-medium">TukoSite</span> is a marketplace that helps our
-              <span className="text-primary"> Rent A Store Customers</span> to boost their sales and add more
-              <span className="text-white font-medium"> revenue</span> to their business. Our main aim as
-              <span className="text-primary"> ecommerce solution service</span> is not only to charge for services but
+            <p className="text-black/80 dark:text-white/80 text-base sm:text-lg leading-relaxed font-light animate-slide-in-bottom">
+              <span className="dark:text-white font-medium">TukoSite</span> is a marketplace that helps our
+              <span className="font-medium text-primary"> Rent A Store Customers</span> to boost their sales and add more
+              <span className="dark:text-white font-medium"> revenue</span> to their business. Our main aim as
+              <span className="font-medium text-primary"> ecommerce solution service</span> is not only to charge for services but
               to also add
-              <span className="text-white font-medium"> value</span> to our entrepreneurs endevours.
+              <span className="dark:text-white font-medium"> value</span> to our entrepreneurs endevours.
             </p>
           </div>
         </div>
@@ -527,12 +527,12 @@ function ClientContainer() {
       </div>
 
       {/* Fifth section - Rent a Store Showcase */}
-      <div id="fifth-section" className="relative w-full h-[160vh] bg-black z-50 overflow-hidden">
+      <div id="fifth-section" className="relative w-full h-[160vh] bg-white dark:bg-black z-50 overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0 w-full h-full">
           <Image src="/bg.jpg" alt="Background" fill className="object-cover opacity-40" />
           {/* Dark gradient overlay - reversed direction from fourth section */}
-          <div className="absolute inset-0 bg-gradient-to-l from-black via-black/80 to-black/40" />
+          <div className="absolute inset-0  bg-gradient-to-l from-white via-white/10 to-white/10 dark:bg-gradient-to-l dark:from-black dark:via-black/80 dark:to-black/40" />
         </div>
 
         {/* Stiky note */}
@@ -540,10 +540,10 @@ function ClientContainer() {
           className={`absolute scale-[0.8] sm:scale-100 lg:scale-110 top-0 right-8 z-20 w-44 h-44 -rotate-6 shadow-lg p-4 flex items-center justify-center transform hover:-rotate-3 transition-all duration-500 ${thirdSectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
           style={{ fontFamily: "Caveat, cursive" }}
         >
-          <p className="text-purple-200 text-2xl text-center transform rotate-3">rent a store solution</p>
+          <p className="text-purple-900 dark:text-purple-200 text-2xl text-center transform rotate-3">rent a store solution</p>
           {/* Arrow SVG pointing to header */}
           <svg
-            className="absolute top-6 -left-20 w-24 h-24 text-purple-200 fill-current animate-bounce-slow"
+            className="absolute top-6 -left-20 w-24 h-24 text-purple-900 dark:text-purple-200 fill-current animate-bounce-slow"
             viewBox="0 0 100 100"
           >
             <path
@@ -630,12 +630,12 @@ function ClientContainer() {
           className={`absolute bottom-20 left-0 right-0 z-30 px-8 sm:px-16 md:px-24 transition-all duration-1000 ${fifthSectionVisible ? "opacity-100 translate-y-4" : "opacity-0 translate-y-20"}`}
         >
           <div className="max-w-4xl mx-auto p-6 sm:p-8">
-            <h4 className="font-humane text-white text-4xl sm:text-5xl mb-4 animate-slide-in-right">Rent a Store</h4>
+            <h4 className="font-humane dark:text-white text-4xl sm:text-5xl mb-4 animate-slide-in-right">Rent a Store</h4>
             <div className="w-20 h-1 bg-primary mb-6 animate-slide-in-left"></div>
-            <p className="text-white/80 text-base sm:text-lg leading-relaxed font-light animate-slide-in-bottom">
-              For as <span className="text-white font-medium">Low</span> as <span className="text-primary "> 1k </span>{" "}
+            <p className="text-dark/80 dark:text-white/80 text-base sm:text-lg leading-relaxed font-light animate-slide-in-bottom">
+              For as <span className="dark:text-white font-medium">Low</span> as <span className="text-primary font-medium dark:font-normal"> 1k </span>{" "}
               a <span className="text-primary font-medium">month</span>, our customers can be able to get{" "}
-              <span className="text-white font-medium">their own</span> <span className="text-primary ">.co.ke</span>{" "}
+              <span className="dark:text-white font-medium">their own</span> <span className="text-primary font-medium dark:font-normal">.co.ke</span>{" "}
               domainn name and an <span className="text-primary font-medium">E-commerce Store</span> to star selling on
               the go. Our sores come with <span className="text-primary font-medium">Online M-pesa Payment</span>{" "}
               support, <span className="text-primary font-medium">Order Management</span> and have partnered with all
@@ -658,20 +658,20 @@ function ClientContainer() {
       </div>
 
       {/* Services Section - before the sixth section */}
-      <div id="services-section" className="relative  w-full min-h-screen bg-black z-45 overflow-hidden py-20">
+      <div id="services-section" className="relative  w-full min-h-screen bg-white dark:bg-black z-45 overflow-hidden py-20">
         {/* Background image with overlay */}
         <div className="absolute inset-0 w-full h-full">
           <Image src="/bg.jpg" alt="Background" fill className="object-cover opacity-20" />
           {/* Dark overlay with gradient */}
-          <div className="absolute inset-0 bg-black/40 backdrop-filter backdrop-blur-md z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/70 to-white/70 dark:from-black/40 dark:via-black/40 dark:to-black/40 backdrop-filter backdrop-blur-md z-10" />
         </div>
 
         {/* Sticky note - top right */}
         <div
-          className={`absolute scale-[0.9] sm:scale-100 lg:scale-110 z-10 -top-8 right-8 z-20 w-48 h-48 bg-green-200/10 backdrop-filter backdrop-blur-sm border border-green-200/30 -rotate-6 shadow-lg p-4 flex items-center justify-center transform hover:rotate-3 transition-all duration-500 ${servicesVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-20"}`}
+          className={`absolute scale-[0.9] sm:scale-100 lg:scale-110 z-10 -top-8 right-8 z-20 w-48 h-48 bg-green-800/20 dark:bg-green-200/10 backdrop-filter backdrop-blur-sm border border-green-200/30 -rotate-6 shadow-lg p-4 flex items-center justify-center transform hover:rotate-3 transition-all duration-500 ${servicesVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-20"}`}
           style={{ fontFamily: "Caveat, cursive" }}
         >
-          <p className="text-green-200 text-2xl text-center transform rotate-3">and so much more...</p>
+          <p className="text-green-800 dark:text-green-200 text-2xl text-center transform rotate-3">and so much more...</p>
           {/* Arrow SVG pointing to services */}
           <svg
             className="absolute -bottom-16 -left-8 w-24 h-24 text-green-200 fill-current animate-bounce-slow"
@@ -690,7 +690,7 @@ function ClientContainer() {
         <div
           className={`relative z-20 text-center mb-16 transition-all duration-1000 ${servicesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
         >
-          <h2 className="font-humane text-white text-7xl sm:text-8xl lg:text-9xl mb-4">
+          <h2 className="font-humane dark:text-white text-7xl sm:text-8xl lg:text-9xl mb-4">
             OUR <span className="text-primary">SERVICES</span>
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto mb-8"></div>
@@ -705,7 +705,7 @@ function ClientContainer() {
                 <Link
                   href={service.link}
                   key={index}
-                  className={`bg-white/5 backdrop-filter backdrop-blur-sm border border-white/10 rounded-lg p-4 flex flex-col items-center text-center transform transition-all duration-500 hover:scale-105 hover:bg-black/60 hover:border-primary/30 group ${servicesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
+                  className={`bg-black/10 dark:bg-white/5 backdrop-filter backdrop-blur-sm border border-black/20 dark:border-white/10 rounded-lg p-4 flex flex-col items-center text-center transform transition-all duration-500 hover:scale-105 hover:bg-black/60 hover:border-primary/30 group ${servicesVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
                   style={{ transitionDelay: `${index * 50}ms` }}
                 >
                   <span className="material-symbols-outlined text-primary text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
@@ -740,25 +740,25 @@ function ClientContainer() {
       </div>
 
       {/* Sixth section - Why We Are The Best */}
-      <div id="sixth-section" className="relative w-full h-screen bg-black z-50 overflow-hidden">
+      <div id="sixth-section" className="relative w-full h-screen bg-white dark:bg-black z-50 overflow-hidden">
         {/* Background image with overlay */}
         <div className="absolute inset-0 w-full h-full">
           <Image src="/bg.jpg" alt="Background" fill className="object-cover opacity-30" />
           {/* Dark overlay with gradient */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-white/80 via-white/60 to-white/80 dark:bg-gradient-to-b dark:from-black/80 dark:via-black/60 dark:to-black/80" />
         </div>
 
         {/* Sticky note - top left */}
         <div
-          className={`absolute scale-[0.9] sm:scale-100 lg:scale-110 top-8 left-8 z-20 w-48 h-48 bg-yellow-200/10 backdrop-filter backdrop-blur-sm border border-yellow-200/30 rotate-6 shadow-lg p-4 flex items-center justify-center transform hover:rotate-3 transition-all duration-500 ${sixthSectionVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-20"}`}
+          className={`absolute scale-[0.9] sm:scale-100 lg:scale-110 top-8 left-8 z-20 w-48 h-48 bg-yellow-800/20 dark:bg-yellow-200/10 backdrop-filter backdrop-blur-sm border border-yellow-800/40 dark:border-yellow-200/30 rotate-6 shadow-lg p-4 flex items-center justify-center transform hover:rotate-3 transition-all duration-500 ${sixthSectionVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-20"}`}
           style={{ fontFamily: "Caveat, cursive" }}
         >
-          <p className="text-yellow-200 text-2xl text-center transform -rotate-3">
+          <p className="text-yellow-800 dark:text-yellow-200 text-2xl text-center transform -rotate-3">
             we don't just create sites and apps
           </p>
           {/* Arrow SVG pointing to header */}
           <svg
-            className="absolute -bottom-16 -right-8 w-24 h-24 text-yellow-200 fill-current animate-bounce-slow"
+            className="absolute -bottom-16 -right-8 w-24 h-24 text-yellow-800 dark:text-yellow-200 fill-current animate-bounce-slow"
             viewBox="0 0 100 100"
           >
             <path
@@ -775,13 +775,13 @@ function ClientContainer() {
           className={`absolute w-full h-full flex items-center justify-center px-4 z-20 transition-all duration-1000 ${sixthSectionScrolled ? "opacity-30 scale-95" : "opacity-100 scale-100"}`}
         >
           <h1
-            className={`font-humane font-bold tracking-wide text-white/60 text-center text-7xl sm:text-8xl lg:text-9xl leading-tight tracking-wide transition-all duration-1000 ${sixthSectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
+            className={`font-humane font-bold tracking-wide text-black/60 dark:text-white/60 text-center text-7xl sm:text-8xl lg:text-9xl leading-tight tracking-wide transition-all duration-1000 ${sixthSectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
           >
-            <span className="text-8xl sm:text-9xl lg:text-[9.5rem] text-white mr-2 inline-block animate-slide-in-left">
+            <span className="text-8xl sm:text-9xl lg:text-[9.5rem] text-black dark:text-white mr-2 inline-block animate-slide-in-left">
               WHY
             </span>
             <span className="inline-block animate-slide-in-right">WE ARE</span>
-            <span className="text-8xl sm:text-9xl lg:text-[9.5rem] text-white mr-2 inline-block animate-slide-in-bottom">
+            <span className="text-8xl sm:text-9xl lg:text-[9.5rem] text-black dark:text-white mr-2 inline-block animate-slide-in-bottom">
               THE BEST
             </span>
           </h1>
@@ -791,7 +791,7 @@ function ClientContainer() {
         <div
           className={`absolute bottom-10 left-0 right-0 flex justify-center z-30 transition-all duration-500 ${sixthSectionTitleFullyVisible && !sixthSectionScrolled ? "opacity-100" : "opacity-0"}`}
         >
-          <div className="text-white/70 text-center">
+          <div className="text-white/70 dark:text-white/70 text-center">
             <p className="mb-2 text-sm">Scroll to read more</p>
             <svg
               className="w-6 h-6 mx-auto animate-bounce"
@@ -809,13 +809,13 @@ function ClientContainer() {
         <div
           className={`absolute inset-0 flex items-center justify-center z-30 px-8 sm:px-16 md:px-24 transition-all duration-1000 ease-in-out ${sixthSectionVisible ? "opacity-100" : "opacity-0"} ${sixthSectionScrolled ? "translate-y-0" : "translate-y-full"}`}
         >
-          <div className="max-w-4xl mx-auto bg-black/70 backdrop-filter backdrop-blur-md p-8 sm:p-10 rounded-xl border border-white/10 shadow-2xl">
+          <div className="max-w-4xl mx-auto bg-white/10 dark:bg-black/70 backdrop-filter backdrop-blur-md p-8 sm:p-10 rounded-xl border border-black/10 dark:border-white/10 shadow-2xl">
             <h3 className="font-humane text-primary text-4xl sm:text-5xl mb-6 text-center">Our Promise</h3>
-            <p className="text-white/90 text-xl sm:text-2xl leading-relaxed font-light text-center">
+            <p className="text-black dark:text-white/90 text-xl sm:text-2xl leading-relaxed font-light text-center">
               We <span className="text-primary font-medium">bring your vision to life</span>. With leading industry
-              expertise, we make your <span className="text-white font-medium">dream come true</span>. Our{" "}
+              expertise, we make your <span className="dark:text-white font-medium">dream come true</span>. Our{" "}
               <span className="text-primary font-medium">solutions</span> explain our work better. We build to suit{" "}
-              <span className="text-white font-medium">you and your customers' needs</span> and make your business grow.{" "}
+              <span className="dark:text-white font-medium">you and your customers' needs</span> and make your business grow.{" "}
               <span className="text-primary font-medium text-2xl sm:text-3xl">Try us today</span>.
             </p>
           </div>

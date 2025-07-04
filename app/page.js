@@ -3,8 +3,8 @@ import ClientContainer from '../components/ClientContainer';
 import { ThemeToggle } from '../components/ThemeToggle';
 
 export const metadata = {
-  title: 'Professional Web Designers - Developers, Mobile App Developers, Online Marketing Experts & SaaS Providers in Nairobi, Kenya',
-  description: 'At Hurricane Teck, we specialize in creating custom websites, developing native mobile apps, and providing innovative SaaS products. As a leading web design - development company and online marketing agency in Nairobi, Kenya, we help businesses grow with responsive web solutions, effective digital marketing strategies, and powerful software tools designed to enhance performance and drive success. Partner with us to elevate your online presence and achieve your business goals.',
+  title: `Unlock Your Brand's Potential: Web Design, Digital Marketing, Graphic Design, Branding & Merchandising, SEO & Print Services - Hurricane Teck & Marketing Solutions, Nairobi, Kenya`,
+  description: `Hurricane Teck & Marketing Solutions, Nairobi's trusted partner since Oct 2022, helps businesses thrive. We offer digital marketing consulting, marketing strategies, and branding solutions including printing services (roll-up/teardrop banners, backdrops, business cards, flyers, branded merchandise). We specialize in web design, social media marketing, SEO (Search Engine Optimization), and graphic design for both digital and print needs. Unlock your brand's potential with us!`,
   alternates: {
     canonical: 'https://www.hurricaneteck.co.ke'
   },

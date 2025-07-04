@@ -5,6 +5,9 @@ import { ThemeToggle } from '../components/ThemeToggle';
 export const metadata = {
   title: 'Professional Web Designers - Developers, Mobile App Developers, Online Marketing Experts & SaaS Providers in Nairobi, Kenya',
   description: 'At Hurricane Teck, we specialize in creating custom websites, developing native mobile apps, and providing innovative SaaS products. As a leading web design - development company and online marketing agency in Nairobi, Kenya, we help businesses grow with responsive web solutions, effective digital marketing strategies, and powerful software tools designed to enhance performance and drive success. Partner with us to elevate your online presence and achieve your business goals.',
+  alternates: {
+    canonical: 'https://www.hurricaneteck.co.ke'
+  },
   icons: {
     icon: '/h.png',
     shortcut: '/h.png',

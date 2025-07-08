@@ -1,10 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Header from '../../../components/Header'; 
-import { ThemeToggle } from '../../../components/ThemeToggle';
-import RateCard from '../../../components/RateCard';
-import { websiteTypesData } from '../../../data/webDesignData';
+import Header from '../../../../components/Header'; 
+import RateCard from '../../../../components/RateCard';
+import { websiteTypesData } from '../../../../data/webDesignData';
 import Image from 'next/image'; // Import Image for background
 
 // Basic metadata structure for client components (or move to layout if static)

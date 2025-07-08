@@ -1,6 +1,5 @@
-import ContactInfo from '../components/ContactInfo';
-import ClientContainer from '../components/ClientContainer';
 import { ThemeToggle } from '../components/ThemeToggle';
+import HomePage from '../components/HomePage';
 
 export const metadata = {
   title: `Unlock Your Brand's Potential: Web Design, Digital Marketing, Graphic Design, Branding & Merchandising, SEO & Print Services - Hurricane Teck & Marketing Solutions, Nairobi, Kenya`,
@@ -34,8 +33,7 @@ export default function Home() {
       <div className="fixed top-4 right-4 z-50">
         <ThemeToggle />
       </div>
-      <ClientContainer/>
-      <ContactInfo/>
+      <HomePage/>
     </div>
   );
 }

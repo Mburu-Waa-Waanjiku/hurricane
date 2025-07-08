@@ -14,6 +14,53 @@
   }
 }
 
+.button-svg-border {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+.buttonn-svg-border {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.button-svg-border rect {
+  fill: none;
+  stroke: #ff6f61;
+  stroke-width: 1px;
+  rx: 64;
+  ry: 64;
+  stroke-dasharray: 460;
+  stroke-dashoffset: 460;
+  transition: stroke-dashoffset 0.6s ease-in-out, filter 0.3s ease;
+}
+.buttonn-svg-border rect {
+  fill: none;
+  stroke: #ff6f61;
+  stroke-width: 2px;
+  rx: 12;
+  ry: 12;
+  stroke-dasharray: 460;
+  stroke-dashoffset: 460;
+  transition: stroke-dashoffset 0.6s ease-in-out, filter 0.3s ease;
+}
+
+.button-active .button-svg-border rect {
+  stroke-dashoffset: 0;
+  /* filter: drop-shadow(0 0 4px #ff6f61) drop-shadow(0 0 8px #ff6f61); */
+}
+ 
+.button-active .buttonn-svg-border rect {
+  stroke-dashoffset: 0;
+  /* filter: drop-shadow(0 0 4px #ff6f61) drop-shadow(0 0 8px #ff6f61); */
+}
 /* Custom animations */
 @keyframes fadeIn {
   0% { opacity: 0; }

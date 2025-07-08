@@ -341,8 +341,8 @@ function ClientContainer() {
 
         {/* Heading container */}
         <div className="absolute w-full h-full flex flex-col top-0 z-10 flex items-center justify-center px-4 pt-20 overflow-hidden">
-          <h1
-            className={`font-humane font-bold tracking-wide text-black/70 dark:text-white/60 text-center text-7xl sm:text-8xl lg:text-9xl leading-tight tracking-wide transition-all duration-1000 ${titleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
+          <h2
+            className={`font-humane tracking-wide text-black/70 dark:text-white/60 text-center text-7xl sm:text-8xl lg:text-9xl leading-tight tracking-wide transition-all duration-1000 ${titleVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
           >
             <span className="text-8xl sm:text-9xl lg:text-[9.5rem] text-black dark:text-white mr-2 inline-block animate-slide-in-left">
               WE
@@ -357,7 +357,7 @@ function ClientContainer() {
             <span className="text-8xl sm:text-9xl lg:text-[9.5rem] text-black dark:text-white mr-2 inline-block animate-slide-in-top">
               COMPANY
             </span>
-          </h1>
+          </h2>
         </div>
       </div>
 
@@ -415,8 +415,8 @@ function ClientContainer() {
 
         {/* Heading container */}
         <div className="absolute w-full h-full flex flex-col top-0 z-10 flex items-center justify-center px-4 pt-20 overflow-hidden">
-          <h1
-            className={`font-humane font-bold tracking-wide text-black/60 dark:text-white/60 text-center text-7xl sm:text-8xl lg:text-9xl leading-tight tracking-wide transition-all duration-1000 ${thirdSectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
+          <h2
+            className={`font-humane tracking-wide text-black/60 dark:text-white/60 text-center text-7xl sm:text-8xl lg:text-9xl leading-tight tracking-wide transition-all duration-1000 ${thirdSectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
           >
             <span className="text-8xl sm:text-9xl lg:text-[9.5rem] text-black dark:text-white mr-2 inline-block animate-slide-in-left">
               OUR
@@ -425,7 +425,7 @@ function ClientContainer() {
             <span className="text-8xl sm:text-9xl lg:text-[9.5rem] text-black dark:text-white mr-2 inline-block animate-slide-in-bottom">
               SOLUTIONS
             </span>
-          </h1>
+          </h2>
         </div>
       </div>
 
@@ -775,7 +775,7 @@ function ClientContainer() {
           className={`absolute w-full h-full flex items-center justify-center px-4 z-20 transition-all duration-1000 ${sixthSectionScrolled ? "opacity-30 scale-95" : "opacity-100 scale-100"}`}
         >
           <h1
-            className={`font-humane font-bold tracking-wide text-black/60 dark:text-white/60 text-center text-7xl sm:text-8xl lg:text-9xl leading-tight tracking-wide transition-all duration-1000 ${sixthSectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
+            className={`font-humane tracking-wide text-black/60 dark:text-white/60 text-center text-7xl sm:text-8xl lg:text-9xl leading-tight tracking-wide transition-all duration-1000 ${sixthSectionVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"}`}
           >
             <span className="text-8xl sm:text-9xl lg:text-[9.5rem] text-black dark:text-white mr-2 inline-block animate-slide-in-left">
               WHY

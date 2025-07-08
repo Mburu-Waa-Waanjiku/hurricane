@@ -9,9 +9,9 @@ const services = [
     icon: Monitor,
     description: "We create visually stunning, mobile-responsive, and SEO-friendly websites that don’t just look good — they convert and leave our clients happy. Our web design services are ideal for businesses looking to establish or upgrade their online presence. Our Web Design Services Include Business websites & portfolios, E-commerce platforms and many more",
     samples: [
-      { title: "Corporate Website", url: "https://toptorenconsultancy.co.ke", image: "/corporate.png" },
+      { title: "Corporate Website", url: "https://toptorenconsultancy.co.ke", image: "/corporate.PNG" },
       { title: "E-commerce Store", url: "https://atkevs.com", image: "/rentastoreweb.png" },
-      { title: "Shool Website", url: "https://ruirucollegerccms.ac.ke", image: "/schoolwebsite.png" },
+      { title: "Shool Website", url: "https://ruirucollegerccms.ac.ke", image: "/schoolwebsite.PNG" },
     ]
   },
   {

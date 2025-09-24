@@ -140,7 +140,7 @@ export default function ProductCard({ product }) {
   };
 
   return (
-    <div className="relative group flex flex-col h-full">
+    <div className="relative bg-white px-2 pt-2 pb-4 rounded-3xl group flex flex-col h-full">
       {/* Product Image Slider */}
       <div 
             className="relative aspect-square rounded-3xl overflow-hidden bg-gray-100"
@@ -273,39 +273,13 @@ export default function ProductCard({ product }) {
           <button 
             onClick={handleGetQuote}
             disabled={product.inventory?.stock === 0} // Optionally disable if out of stock
-            className="w-full bg-green-500 text-white text-sm font-medium py-2 px-4 rounded-md shadow-sm hover:bg-green-600 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2" // Added flex, items-center, justify-center, gap-2
+            className="w-full text-green-600 text-sm font-medium py-2 px-4 rounded-full shadow-sm border-[1px] border-green-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2" // Added flex, items-center, justify-center, gap-2
           >
-            <FaWhatsapp className="w-4 h-4" /> {/* Added WhatsApp Icon */} 
+            <FaWhatsapp className="w-4 h-4 " /> {/* Added WhatsApp Icon */} 
             Order via WhatsApp
           </button>
         </div>
       </div>
-
-      {/* Toast Notifications */} 
-      <AnimatePresence>
-        {showCartToast && (
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20, transition: { duration: 0.2 } }}
-            className="fixed bottom-5 left-1/2 -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-full text-xs z-[70] flex items-center gap-2 shadow-lg"
-          >
-            <FaShoppingCart /> {cartToastMessage}
-          </motion.div>
-        )}
-      </AnimatePresence>
-      <AnimatePresence>
-        {showFavToast && (
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20, transition: { duration: 0.2 } }}
-            className="fixed bottom-16 left-1/2 -translate-x-1/2 bg-black/80 text-white px-4 py-2 rounded-full text-xs z-[70] flex items-center gap-2 shadow-lg"
-          >
-            <FaHeart /> {favToastMessage}
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Add keyframes directly if not in global CSS or Tailwind config */} 
       <style jsx global>{`

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Monitor, Palette, Search, Printer, ChevronLeft, ChevronRight } from "lucide-react";
 import { SampleCarousel } from "./SampleCarousel";
+import Link from "next/link";
 
 const services = [
   {
@@ -10,9 +11,10 @@ const services = [
     description: "We create visually stunning, mobile-responsive, and SEO-friendly websites that don’t just look good — they convert and leave our clients happy. Our web design services are ideal for businesses looking to establish or upgrade their online presence. Our Web Design Services Include Business websites & portfolios, E-commerce platforms and many more",
     samples: [
       { title: "Corporate Website", url: "https://toptorenconsultancy.co.ke", image: "/corporate.PNG" },
-      { title: "E-commerce Store", url: "https://atkevs.com", image: "/rentastoreweb.png" },
+      { title: "E-commerce Store", url: "https://tukosite.shop", image: "/rentastoreweb.png" },
       { title: "Shool Website", url: "https://ruirucollegerccms.ac.ke", image: "/schoolwebsite.PNG" },
-    ]
+    ],
+    link: '/services/web-design/get-a-website-from-the-best-web-designers-in-kenya-nairobi'
   },
   {
     id: "graphic-design",
@@ -20,10 +22,11 @@ const services = [
     icon: Palette,
     description: "We offer high-quality graphic design solutions for both digital and physical media, tailored to help you communicate your message effectively and memorably. We Design Posters, flyers, and brochures, Roll-up banners & teardrop banners, Event backdrops and business signage & Branding materials (logos, business cards, brand guidelines)",
     samples: [
-      { title: "Business Flyers", image: "/fl1.jpg" },
-      { title: "Roll-up Banners", image: "/bn5.jpg" },
+      { title: "Business Flyers", image: "/shop/A6-flyer-printing.jpg" },
+      { title: "Roll-up Banners", image: "/shop/D7wq20oW0AAnAqA.jpg" },
       { title: "Markeing Content", image: "/https://res.cloudinary.com/dddx5qpji/video/upload/v1741767155/WhatsApp_Video_2025-03-12_at_11.05.58_AM_igbydj.mp4" }
-    ]
+    ],
+    link: '/shop'
   },
   {
     id: "digital-marketing",
@@ -34,7 +37,8 @@ const services = [
       { title: "Social Media Content", image: "https://res.cloudinary.com/dddx5qpji/video/upload/v1741768242/WhatsApp_Video_2025-03-12_at_11.15.48_AM_ip8df4.mp4" },
       { title: "Video Marketing", image: "https://res.cloudinary.com/dddx5qpji/video/upload/v1751888680/WhatsApp_Video_2025-07-03_at_9.31.31_AM_trwyhz.mp4" },
       { title: "SEO Campaign Results", image: "/seo.webp" },
-    ]
+    ],
+    link: '/'
   },
   {
     id: "printing",
@@ -42,10 +46,11 @@ const services = [
     icon: Printer,
     description: "Get end-to-end service from design to print. We print high-quality marketing materials for businesses and events using vibrant, durable finishes. Our Printing Services Cover Flyers, posters, and banners, Roll-up and teardrop banners, Event backdrops, Business cards, brochures, and product labels",
     samples: [
-      { title: "Business Cards", image: "/bc5.jpg" },
-      { title: "Large Format Prints", image: "/bn3.jpg" },
-      { title: "Promotional Materials", image: "/bn1.jpg" }
-    ]
+      { title: "Business Cards", image: "/shop/bc5.jpg" },
+      { title: "Large Format Prints", image: "/shop/H05c4ffbb7dca4e119995c37e9e984864r.jpg" },
+      { title: "Promotional Materials", image: "/shop/d9bad91637b7771e11915f08643e3e2c-1536x1194.jpg" }
+    ],
+    link: '/shop'
   }
 ];
 
@@ -284,11 +289,20 @@ export const ServicesSection = ({ currentService, setCurrentService }) => {
               
               <div className="text-center mt-8">
                 <button className="backdrop-blur-md bg-white/30 border border-[#e6471f] text-[#e6471f] px-8 py-2 rounded-full text-base font-semibold hover:bg-white/50 hover:border-[#e6471f]/70 transition-all duration-300 shadow-lg hover:shadow-xl">
-                  View More {service.name} Work
+                  <Link href={`${service.link}`} passHref>
+                    View More {service.name} Work
+                  </Link>
                 </button>
               </div>
               <p className="text-xl mt-16 text-gray-600 max-w-3xl mb-16 mx-auto leading-relaxed">
-                {service.description}
+                {service.description}{`. `}
+                {service.id === "web-design" && 
+                  <span className="text-blue-700">
+                    <Link href={"/services/web-design"}>
+                      Why choose us?
+                    </Link>
+                  </span>
+                }
               </p>
               {service.id === "digital-marketing" &&
                 <div className="pt-6 text-gray-800 flex flex-col justify-center items-center">

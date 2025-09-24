@@ -1,84 +1,66 @@
 export const products = [
   { 
-    id: 'prod_branding_pkg',
-    name: 'Package Branding', 
-    images: ['/pk1.jpg', '/pk2.jpg', '/pk3.jpg', '/pk4.jpg'],
-    priceBase: 15000, // Example base price
-    discounts: { seasonal: { percentage: 15 } }, // Example discount
+    id: 'prod_narrow_base',
+    name: 'Narrow Base', 
+    images: ['/shop/D7wq20oW0AAnAqA.jpg', '/shop/e423804a28cfa1e38064c5f15e55dbdc.jpg', '/shop/narrow_base_stand_2.png', '/shop/Portable-Roll-Up-Hardware.jpg'],
+    priceBase: 5000, // Example base price
+    discounts: { seasonal: { percentage: 0 } }, // Example discount
     description: 'Comprehensive branding solutions for your packaging.',
     categorySpecificAttributes: { color: [], size: [] }, // Example attributes
     inventory: { stock: 10 }, // Example inventory
   },
   { 
-    id: 'prod_biz_cards',
-    name: 'Business Cards (x100)', 
-    images: ['/bc1.jpg', '/bc2.jpg', '/bc3.jpg', '/bc4.jpg', '/bc5.jpg'],
-    priceBase: 1200,
+    id: 'prod_wide_base',
+    name: 'Wide Base', 
+    images: ['/shop/Deluxe_Roll_Up_Banner_05474513202210.jpg', '/shop/narrow-base-banners-5.jpg', '/shop/Broadbase_rollup_banner.jpg'],
+    priceBase: 6500,
     description: 'Professionally designed and printed business cards.',
     categorySpecificAttributes: { color: [], size: [] },
     inventory: { stock: 50 },
   },
   { 
-    id: 'prod_flyers_a5',
-    name: 'Flyers (A5 x500)', 
-    images: ['/fl1.jpg', '/fl2.jpg', '/fl3.jpg', '/fl4.jpg', '/fl5.jpg'],
-    priceBase: 5500,
+    id: 'prod_large_wide_base',
+    name: 'Large Wide Base', 
+    images: ['/shop/Media-Banner-3x2m-1.png', '/shop/Wide-Premium-Roller-Banner-Print-Example-2.jpg'],
+    priceBase: 19999,
     description: 'High-quality flyers for marketing and events.',
     categorySpecificAttributes: { color: [], size: [] },
     inventory: { stock: 30 },
   },
   { 
-    id: 'prod_banner_gen',
-    name: 'Banners (Vinyl 2x1m)', 
-    images: ['/bn1.jpg', '/bn2.jpg', '/bn3.jpg', '/bn4.jpg', '/bn5.jpg'],
-    priceBase: 3000,
-    description: 'Versatile banners for indoor and outdoor use.',
-    categorySpecificAttributes: { color: [], size: [] },
-    inventory: { stock: 15 },
-  },
-  { 
-    id: 'prod_merch_mugs',
-    name: 'Merchandising (Mugs x10)', 
-    images: ['/merch-placeholder.jpg'], // Placeholder
-    priceBase: 2500,
+    id: 'prod_teardrop_banner',
+    name: 'Teardrop Banner', 
+    images: ['/shop/teardrop-banner-printing-3.webp', '/shop/teardrop-banners.jpg'], // Placeholder
+    priceBase: 9000,
     description: 'Custom merchandising items for your brand.',
     categorySpecificAttributes: { color: [], size: [] },
     inventory: { stock: 20 },
   },
   { 
-    id: 'prod_banner_tear',
-    name: 'Teardrop Banners (Medium)', 
-    images: ['/teardrop-placeholder.jpg'], // Placeholder
-    priceBase: 8000,
-    description: 'Eye-catching teardrop banners for events and promotions.',
+    id: 'prod_flyers',
+    name: 'Flyers', 
+    images: ['/shop/1ed8e69a93bfa77ba2989cc64309a114.jpg', '/shop/A6-flyer-printing.jpg', ], // Placeholder
+    priceBase: 4500,
+    description: 'Custom merchandising items for your brand.',
     categorySpecificAttributes: { color: [], size: [] },
-    inventory: { stock: 5 },
+    inventory: { stock: 20 },
   },
   { 
-    id: 'prod_banner_rollup_w',
-    name: 'Wide Base Rollup Banners', 
-    images: ['/rollup-wide-placeholder.jpg'], // Placeholder
-    priceBase: 9500,
-    description: 'Stable and large rollup banners with a wide base.',
+    id: 'prod_backdrop',
+    name: 'Backdrop',
+    images: ['/shop/H05c4ffbb7dca4e119995c37e9e984864r.jpg', '/shop/H194e3b7f3d7245469f8d5b632f61fe8cM.jpg'], // Placeholder
+    priceBase: 19999,
+    description: 'Custom merchandising items for your brand.',
     categorySpecificAttributes: { color: [], size: [] },
-    inventory: { stock: 8 },
+    inventory: { stock: 20 },
   },
   { 
-    id: 'prod_banner_rollup_t',
-    name: 'Thin Base Rollup Banners', 
-    images: ['/rollup-thin-placeholder.jpg'], // Placeholder
-    priceBase: 7000,
-    description: 'Portable and sleek rollup banners with a thin base.',
+    id: 'prod_business_card',
+    name: 'Business Card',
+    images: ['/bc1.jpg', '/bc2.jpg', '/bc3.jpg', '/bc4.jpg', '/bc5.jpg'], // Placeholder
+    priceBase: 450,
+    description: 'Custom merchandising items for your brand.',
     categorySpecificAttributes: { color: [], size: [] },
-    inventory: { stock: 12 },
-  },
-  { 
-    id: 'prod_wheel_covers',
-    name: 'Wheel Covers (Set of 4)', 
-    images: ['/wheelcover-placeholder.jpg'], // Placeholder
-    priceBase: 6000,
-    description: 'Custom printed wheel covers for vehicles.',
-    categorySpecificAttributes: { color: [], size: [] },
-    inventory: { stock: 2 }, // Example out of stock
+    inventory: { stock: 20 },
   },
 ]; 

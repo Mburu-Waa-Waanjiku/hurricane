@@ -32,9 +32,9 @@ export default function ShopPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-100 text-gray-900 dark:text-white">
       {/* Pass headerState to Header - Header needs modification to accept this */}
-      <Header scrollState={headerState} /> 
+      <Header scrollState={headerState} />
       
       {/* Theme toggle - reused from home page logic */}
       {/* <div className="fixed top-4 right-4 z-[70]">

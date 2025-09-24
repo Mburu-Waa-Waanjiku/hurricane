@@ -183,6 +183,7 @@ const WebDesign = () => {
               layout="fill"
               objectFit="cover"
               quality={100}
+              className='opacity-[0.5]'
             />
             {/* Gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white-40 to-white/10  dark:from-black/90 dark:"></div>

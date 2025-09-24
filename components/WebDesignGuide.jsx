@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Header from '../../../../components/Header'; 
-import RateCard from '../../../../components/RateCard';
-import { websiteTypesData } from '../../../../data/webDesignData';
+import Header from './Header'; 
+import RateCard from './RateCard';
+import { websiteTypesData } from '../data/webDesignData';
 import Image from 'next/image'; // Import Image for background
 
 export const metadata = {

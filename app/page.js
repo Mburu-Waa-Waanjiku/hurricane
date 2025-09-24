@@ -14,13 +14,18 @@ export const metadata = {
   }
 };
 
-export function generateJsonLd() {
+// ✅ Just a regular helper (not exported)
+function generateJsonLd() {
   return {
     __html: JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "Hurricane Teck & Marketing Solutions",
-      "alternateName": ["Hurricane Tech & Marketing Solutions", "Hurricaneteck & Marketing Solutions", "Hurricaneteck"],
+      "alternateName": [
+        "Hurricane Tech & Marketing Solutions",
+        "Hurricaneteck & Marketing Solutions",
+        "Hurricaneteck"
+      ],
       "url": process.env.NEXT_PUBLIC_APP_URL,
       "description": `Hurricane Teck & Marketing Solutions, Nairobi's trusted partner since Oct 2022, helps businesses thrive. We offer digital marketing consulting, marketing strategies, and branding solutions including printing services (roll-up/teardrop banners, backdrops, business cards, flyers, branded merchandise). We specialize in web design, social media marketing, SEO (Search Engine Optimization), and graphic design for both digital and print needs. Unlock your brand's potential with us!`
     })
@@ -33,7 +38,14 @@ export default function Home() {
       <div className="fixed top-4 right-4 z-50">
         <ThemeToggle />
       </div>
-      <HomePage/>
+
+      {/* ✅ Add JSON-LD inside <script> */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateJsonLd()}
+      />
+
+      <HomePage />
     </div>
   );
 }

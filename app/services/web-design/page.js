@@ -12,7 +12,7 @@ export const metadata = {
   }
 };
 
-export function generateJsonLd() {
+function generateJsonLd() {
   return {
     __html: JSON.stringify({
       "@context": "https://schema.org",
@@ -31,6 +31,13 @@ export default function Home() {
       <div className="fixed top-4 right-4 z-50">
         <ThemeToggle />
       </div>
+      
+      {/* ✅ Add JSON-LD inside <script> */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={generateJsonLd()}
+      />
+
       <ClientContainer/>
       <ContactInfo/>
     </div>

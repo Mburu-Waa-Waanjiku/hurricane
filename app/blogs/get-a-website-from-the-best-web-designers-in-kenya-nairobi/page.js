@@ -1,5 +1,5 @@
-import PageTransition from '../../../../components/PageTransition';
-import WebDesign from '../../../../components/WebDesign';
+import PageTransition from '../../../components/PageTransition';
+import WebDesign from '../../../components/WebDesign';
 
 export const metadata = {
   title: 'Custom Web Design Services in Nairobi, Kenya – Professional, Responsive, and Affordable Websites - From the Best Web and App Designers',

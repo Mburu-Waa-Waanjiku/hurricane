@@ -24,7 +24,8 @@ const tourData = {
   scenes: {
     scene0: {
       title: "Tour our Shamba",
-      image: "https://i.imgur.com/6ixGNNW.jpeg",
+      //image: "https://i.imgur.com/6ixGNNW.jpeg",
+      image: "/tours/Untitled.png",
       links: [
         { to: "scene1", yaw: 1.09, pitch: 0.06 },
         { to: "scene2", yaw: 1.4, pitch: 0.075 },

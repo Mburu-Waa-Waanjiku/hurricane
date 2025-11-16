@@ -132,7 +132,7 @@ export default function ProductCard({ product }) {
     e.stopPropagation();
     // Construct WhatsApp message link (basic example)
     const phoneNumber = "254704065652"; // Replace with your actual WhatsApp number
-    const message = encodeURIComponent(`Hi, I'm interested in getting a quote for: ${product.name} (ID: ${product.id})`);
+    const message = encodeURIComponent(`Hi, I'm interested in getting a quote for ${product.name}`);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappUrl, '_blank');
     // alert(`Get a quote for: ${product.name}`);

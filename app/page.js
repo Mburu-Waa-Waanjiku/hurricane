@@ -35,9 +35,6 @@ function generateJsonLd() {
 export default function Home() {
   return (
     <div className="flex flex-col p-0 relative">
-      <div className="fixed top-4 right-4 z-50">
-        <ThemeToggle />
-      </div>
 
       {/* ✅ Add JSON-LD inside <script> */}
       <script

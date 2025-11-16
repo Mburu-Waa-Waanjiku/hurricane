@@ -3,9 +3,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useStateContext } from '../utils/StateContext';
 import Image from 'next/image';
-import ContactButton from './ContactButton';
-import ContactInfo from './ContactInfo';
 import Header from './Header';
+import ContactHurricane from './ContactHurricane';
 
 // WebDesign component for displaying a series of slides about web design services
 const WebDesign = () => {
@@ -77,7 +76,7 @@ const WebDesign = () => {
 
   // Effect for managing countdown timer
   useEffect(() => {
-    const countdownDate = new Date('April 30, 2025 00:00:00').getTime();
+    const countdownDate = new Date('December 31, 2025 00:00:00').getTime();
 
     const updateCountdown = () => {
       const now = new Date().getTime();
@@ -160,7 +159,6 @@ const WebDesign = () => {
   return (
     <>
       <Header/>
-      <ContactInfo/>
       <div 
         className="web-design-slides overflow-hidden"
         onWheel={handleWheel}
@@ -183,22 +181,20 @@ const WebDesign = () => {
               layout="fill"
               objectFit="cover"
               quality={100}
-              className='opacity-[0.5]'
+              className='opacity-[1]'
             />
             {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white-40 to-white/10  dark:from-black/90 dark:"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black-40 to-black/10  "></div>
             {/* Slide content */}
             <div className="absolute inset-0 flex justify-start items-center md:translate-y-8">
               <div className={`w-3/4 md:w-2/3 px-4 md:px-12 lg:px-20 ${index === 6 && '-translate-y-10'}`}>
                 <h2 className="text-3xl md:text-4xl lg:text-4xl mb-4 text-primary font-bold">{slide.title}</h2>
-                <p className="dark:text-white font-medium dark:font-normal text-base md:text-lg lg:text-xl">{slide.content}</p>
+                <p className="text-white font-medium font-normal text-base md:text-lg lg:text-xl">{slide.content}</p>
               </div>
               {/* Contact button for slide 5 */}
               {index === 5 && (
                 <div className="relative w-1/3 md:w-1/4 flex justify-center items-center">
-                  <div className="absolute top-1/2 transform -translate-y-1/2 -translate-x-1/4 md:-translate-x-0">
-                    <ContactButton />
-                  </div>
+                    <ContactHurricane view={"web2"} />
                 </div>
               )}
               {/* Scroll indicator for slide 1 */}
@@ -253,7 +249,6 @@ const WebDesign = () => {
                 <button
                   onClick={() => {
                     moveToSlide(5);
-                    setOpenContacts(true);
                   }}
                   className="mt-6 bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 text-lg rounded-full transition duration-300 ease-in-out transform hover:scale-105 shadow-lg"
                 >
@@ -276,20 +271,7 @@ const WebDesign = () => {
             )}
             {/* Navigation buttons for specific slides */}
             {(index === 0 || index === 4 || index === 2 || index === 3) && (
-              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
-                <svg className="w-8 h-6 mb-2 animate-bounce text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
-                <button
-                  onClick={() => {
-                    (index === 2 || index === 4 || index === 3) ? moveToSlide(5) : scrollToNextSlide() ;
-                    (index === 4 || index === 2 || index === 3) && setOpenContacts(true);
-                  }}
-                  className="bg-primary text-white px-6 py-2 rounded-full flex items-center"
-                >
-                  {index === 0 ? `Start Your Journey` : index === 4 ? `Get A Quote Today` : index === 3 ? `Launch Yours Today` : `Consult For Free`}
-                </button>
-              </div>
+              <ContactHurricane index={index} view={"web"} moveToSlide={moveToSlide} scrollToNextSlide ={scrollToNextSlide} />
             )}
           </div>
         ))}

@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "../styles/globals.css";
 import Script from "next/script";
+import { StateProvider } from '../utils/StateContext';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -172,8 +173,9 @@ export default function RootLayout({ children }) {
             style={{ display: "none", visibility: "hidden" }}
           ></iframe>
         </noscript>
-
-        {children}
+        <StateProvider>
+          {children}
+        </StateProvider>
       </body>
     </html>
   );

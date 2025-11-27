@@ -8,6 +8,7 @@ export default async function sitemap() {
     "/virtual-tours",
     "/virtual-tours/winsper-lands-sagana-phase-1",
     "/shop",
+    "/events",
     "/blogs/get-a-website-from-the-best-web-designers-in-kenya-nairobi",
     "/blogs/rent-an-online-store",
     "/blogs/top-3-best-website-developer-companies-in-ruiru-2025",
